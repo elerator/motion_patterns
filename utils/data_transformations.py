@@ -1,6 +1,10 @@
 import numpy as np
 from scipy.ndimage import gaussian_filter, uniform_filter
 from pyoptflow import HornSchunck, getimgfiles
+from PIL import Image
+import os
+from scipy.signal import argrelextrema
+from skimage import exposure
 
 def horn_schunck(tensor, frames=None):
     if not frames:

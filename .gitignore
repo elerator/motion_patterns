@@ -3,3 +3,4 @@ notebooks/__pycache__
 notebooks/*.html
 utils/__pycache__/
 explorative_analysis/__pycache__/
+source_data
