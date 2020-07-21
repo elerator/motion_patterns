@@ -249,7 +249,7 @@ class FastDensityClustering():
 
     @staticmethod
     def mappings(roi, gravity_size=2, gravity_type="disk", frames = 100, search_window_size=8, mode="closest_center"):
-        """ Determines mapping for a region of interest and the specified number of frames
+        """ Determines mapping for a tensor of interest and the specified number of frames
         Args:
             roi: A 3D tensor containing the data that will be clustered framewise
             gravity_size: The size of the neighborhood evaluated during clustering to retrieve the center of mass
@@ -258,9 +258,9 @@ class FastDensityClustering():
             search_window_size: The size of the neighborhood that is evaluated to find the closest clustercenter at t+1
             mode:
         Returns:
-            mappings_out: The mappings between labels of clusters in one frame to the ones in the subsequrnt frame
+            mappings_out: The mappings between labels of clusters in one frame to the ones in the subsequent frame
             preliminary_label_tensor: The tensor of labeled slices. It has the same shape as roi. The background is zero and clusters range from 1 to n.
-            coords: The coordinates for the cluster centers of each slice. Note that for each coordinate label one relates to the coordinates position zero.
+            coords: The coordinates for the cluster centers of each slice.
         """
         mappings_out = []
         preliminary_label_tensor = []
@@ -318,12 +318,24 @@ class FastDensityClustering():
         return output
 
     @staticmethod
-    def cluster_tracking(tensor, mapp=None,  mode="closest_center"):
+    def cluster_tracking(tensor, mapp=None,  mode="closest_center", frames = 100, search_window_size=8):
+        """ Assign labels to clusters of each slice such that the same label relates to the same cluster across slices.
+            Clusters input tensor framewise and determines mapping between clusters of subsequent frame.
+        Args:
+            tensor: 3D Tensor where each slice contains clusters of pixels
+            mapp: Mapping between clusters per slice
+            mode: Mode to determine matching cluster of subsequent frame
+            frames: Number of frames to be processed
+            search_window_size: Radius of (square) neighborhood where the closest cluster center of the subsequent frame is searched (e.g. in mode closest_center)
+        Returns:
+            final_tensor: Tensor of labels in which that the same label relates to the same cluster across slices
+        """
         mapp1 = None
         if type(mapp) == type(None):
-            mapp1, preliminary_label_tensor, coords = FastDensityClustering.mappings(tensor, mode=mode)
+            mapp1, preliminary_label_tensor, coords = FastDensityClustering.mappings(tensor, mode=mode, frames = frames, search_window_size=search_window_size)
         else:
             mapp1 = copy.deepcopy(mapp)
+            preliminary_label_tensor = tensor#is that correct?
         i = 0
         final_tensor = None
         out = np.ndarray(preliminary_label_tensor.shape)
@@ -333,6 +345,7 @@ class FastDensityClustering():
             for key in list(layer_dict.keys()):
                 final_tensor = FastDensityClustering.track(mapp1, key, preliminary_label_tensor, layer, out, i)
                 i += 1
+
         return final_tensor
 
     @staticmethod
@@ -342,5 +355,5 @@ class FastDensityClustering():
         #for x in range(tensor.shape[1]):
         #    for y in range(tensor.shape[2]):
         #        mean[y,x] = np.mean(tensor[:,y,x])
-        ax.imshow(np.mean(label_selected,axis=0))
-        return mean
+        ax.imshow(np.mean(tensor,axis=0))
+        return np.mean(tensor,axis=0)
