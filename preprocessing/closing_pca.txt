@@ -1,0 +1,4 @@
+/mnt/c/Users/eler/Desktop/projects/munich/motion_patterns/datasets/source_data
+/mnt/c/Users/eler/Desktop/projects/munich/motion_patterns/datasets/closing_pca
+runstart16_X1.tif
+runstart16_X2.tif
