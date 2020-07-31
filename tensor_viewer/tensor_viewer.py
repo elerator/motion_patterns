@@ -204,6 +204,8 @@ class TensorViewer(QWidget):
         return img
 
     def update_plot(self, frame=0):
+        if not self.ui.live_update_plot.isChecked():
+            return
         if type(self.plot) != type(None):
             self.plot.fill(0)
         frame += self.plot_n_samples//2

@@ -11,6 +11,15 @@ from sklearn.decomposition import PCA
 from scipy import interpolate
 
 
+def zero_crossings(vector):
+    """ Returns the positions of the zero crossings
+    Args:
+        vector: Vector with potentially positive and negative values
+    Returns:
+        zero_crossings: Position of the zero crossings
+    """
+    return np.where(np.diff(np.sign(vector)))[0]
+
 def horn_schunck(tensor, frames=None):
     if not frames:
         frames = len(tensor)-1
@@ -23,6 +32,19 @@ def horn_schunck(tensor, frames=None):
         print(".",end="")
     return np.array(x_comp), np.array(y_comp)
 
+def gaussian_filter_nan(U, sigma):
+    """ Filters nan in masked images such that the masked are stays of constant size"""
+    V=U.copy()
+    V[np.isnan(U)]=0
+    VV= gaussian_filter(V,sigma=sigma)
+
+    W=0*U.copy()+1
+    W[np.isnan(U)]=0
+    WW= gaussian_filter(W,sigma=sigma)
+
+    Z=VV/WW
+    Z[np.isnan(U)] = np.nan
+    return Z
 
 def logscale(x):
     """ Transforms data to a logarithmic scale
@@ -328,7 +350,7 @@ def lowpass_filter(im, mode = None, keep_fraction = .2, smooth_transition=10):
     fft = fft*keep
     return np.abs(np.fft.ifft2(fft))
 
-def maxima(vector, pre_smoothing=100, minval=0):
+def maxima(vector, pre_smoothing=100, minval=None):
     """ Returns indices of local maxima sorted by value at each indice starting with the highest value
     args:
         vector: Vector of data
@@ -337,12 +359,21 @@ def maxima(vector, pre_smoothing=100, minval=0):
     """
     extrema = None
     if pre_smoothing > 0:
-        extrema = argrelextrema(gaussian_filter(vector,pre_smoothing),np.greater)[0]
+        smooth = gaussian_filter(vector,pre_smoothing)
+        extrema = argrelextrema(smooth,np.greater)[0]
     else:
         extrema = argrelextrema(vector,np.greater)[0]
     vals = vector[extrema].flatten()
-    return extrema[vals>minval]
+    if minval:
+        return extrema[vals>minval]
+    assert np.all(extrema < len(vector))
+    return extrema
 
+def minima(vector, pre_smoothing=100, minval=None):
+    if minval:
+        return maxima(-vector, pre_smoothing, minval = -minval)
+    else:
+        return maxima(-vector, pre_smoothing)
 
 def filter_frame_blood_vessels(img):
     """ Filters blood vessels from image where they appear dark """

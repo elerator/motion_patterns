@@ -1,0 +1,7 @@
+/mnt/c/Users/eler/Desktop/projects/munich/motion_patterns/datasets/source_data
+/mnt/c/Users/eler/Desktop/projects/munich/motion_patterns/datasets/contrast_to_pixelwise_mean
+/mnt/c/Users/eler/Desktop/projects/munich/motion_patterns/datasets/source_data/mask_runstart16_X.png
+runstart16_X1.tif
+runstart16_X2.tif
+#python contrast_to_pixelwise_mean.py --debug --improved_bg --devide_by_background -inputs contrast_to_pixelwise_mean.txt
+#python contrast_to_pixelwise_mean.py --debug -inputs contrast_to_pixelwise_mean.txt

@@ -186,6 +186,13 @@
                 </property>
                </widget>
               </item>
+              <item>
+               <widget class="QCheckBox" name="live_update_plot">
+                <property name="text">
+                 <string>update plot</string>
+                </property>
+               </widget>
+              </item>
              </layout>
             </widget>
            </item>

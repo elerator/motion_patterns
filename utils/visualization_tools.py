@@ -5,6 +5,18 @@ from IPython.display import HTML
 from matplotlib import cm
 from PIL import Image
 
+
+def vector_field_animation(y_comp, x_comp, tensor, start = 0, frames = 40, quivstep = 5, scale = 100):
+    fig_sim, ax_sim = display_combined(y_comp[0], x_comp[0], tensor[0])
+
+    def animate(i, start, x_comp, y_comp, tensor, quivstep, scale):
+        i += start
+        print(".", end ="")
+        display_combined(y_comp[i],x_comp[i], tensor[i+1], fig=fig_sim, ax=ax_sim, scale=scale)
+
+    ani_sim = matplotlib.animation.FuncAnimation(fig_sim, lambda i: animate(i, start, x_comp, y_comp, tensor, quivstep, scale), frames=frames)
+    return ani_sim
+
 def plot_vector_as_field(y, x, scale=1):
     """ Plots a single vector as a vector field of size (10,10)
     Args:
