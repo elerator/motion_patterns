@@ -1,1 +1,1 @@
-find ./* -size +100M | cat >> .gitignore
+find ./* -size +10M | cat >> .gitignore

@@ -3,4 +3,3 @@ notebooks/__pycache__
 notebooks/*.html
 utils/__pycache__/
 explorative_analysis/__pycache__/
-./datasets/source_data/runstart16_X1.tif
