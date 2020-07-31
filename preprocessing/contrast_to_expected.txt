@@ -1,6 +1,0 @@
-/mnt/c/Users/eler/Desktop/projects/munich/motion_patterns/datasets/source_data
-/mnt/c/Users/eler/Desktop/projects/munich/motion_patterns/datasets/expected_images
-/mnt/c/Users/eler/Desktop/projects/munich/motion_patterns/datasets/contrast_to_expected
-None
-runstart16_X1.tif
-runstart16_X2.tif

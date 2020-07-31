@@ -1,4 +1,0 @@
-/mnt/c/Users/eler/Desktop/projects/munich/motion_patterns/datasets/source_data
-/mnt/c/Users/eler/Desktop/projects/munich/motion_patterns/datasets/expected_images_masked_polyfit
-/mnt/c/Users/eler/Desktop/projects/munich/motion_patterns/datasets/source_data/mask_runstart16_X.png
-runstart16_X1.tif runstart16_X2.tif
