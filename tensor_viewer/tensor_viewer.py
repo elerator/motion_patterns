@@ -1,3 +1,4 @@
+import matplotlib
 from tensor_viewer_ui import Ui_TensorViewer
 
 import breeze_resources#light layout
