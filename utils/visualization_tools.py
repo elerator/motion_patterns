@@ -17,6 +17,7 @@ def vector_field_animation(y_comp, x_comp, tensor, start = 0, frames = 40, quivs
     ani_sim = matplotlib.animation.FuncAnimation(fig_sim, lambda i: animate(i, start, x_comp, y_comp, tensor, quivstep, scale), frames=frames)
     return ani_sim
 
+
 def plot_vector_as_field(y, x, scale=1):
     """ Plots a single vector as a vector field of size (10,10)
     Args:

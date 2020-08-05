@@ -10,6 +10,52 @@ from scipy.ndimage.morphology import binary_erosion, binary_dilation
 from sklearn.decomposition import PCA
 from scipy import interpolate
 
+from pynhhd import nHHD
+
+def helmholtz_decomposition(vfields, mask = None, approach = "nhhd"):
+    """ Computes the helmholtz_decomposition using the specified approach
+    args:
+        v_fields: Tensor of vector fields of shape [2, n_frames, height, width] or list of [y_comp, x_comp].
+        mask: Mask to be applied on the decompositions
+        approach: Approach to compute helmholtz_decomposition. By now only natural helmholtz decomposition is supported.
+    returns:
+        solenoidal_gradient: Vector field representation of divergence free (solenoidal) component
+        curl_free_gradient: Vector field representation of curl free component
+        curl_free_function: 2d scalar function representation of curl free component. The gradient of this component is the vector field representation (solenoidal_gradient).
+    """
+    if approach != "nhhd":
+        raise NotImplementedException("Only natural helmholtz decomposition is supported by now")
+
+    solenoidal_gradient = []
+    curl_free_gradient = []
+    harmonic_gradient = []
+
+    curl_free_function = []
+
+    for i in range(vfields.shape[1]):
+        if i % 10 == 0:
+            print(".", end="")
+        vfield = vfields[:,i,:,:].copy()
+        vfield = np.einsum("ijk->kij",vfield)
+        vfield = np.einsum("ijk->kij",vfield)
+        dims = (vfield.shape[0],vfield.shape[1])
+        nhhd = nHHD(grid=dims, spacings=(0.1,0.1))
+        nhhd.decompose(vfield)
+        solenoidal_gradient.append(nhhd.r)
+        curl_free_gradient.append(nhhd.d)
+        curl_free_function.append(nhhd.nD)
+        if type(mask) != type(None):
+            solenoidal_gradient[-1][:,:,0][mask] = np.nan
+            solenoidal_gradient[-1][:,:,1][mask] = np.nan
+            curl_free_gradient[-1][:,:,0][mask] = np.nan
+            curl_free_gradient[-1][:,:,1][mask] = np.nan
+            curl_free_function[-1][:,:][mask] = np.nan
+
+    solenoidal_gradient, curl_free_gradient = np.array(solenoidal_gradient), np.array(curl_free_gradient)
+    solenoidal_gradient = np.einsum("ijkl->lijk", solenoidal_gradient)
+    curl_free_gradient = np.einsum("ijkl->lijk", curl_free_gradient)
+    curl_free_function = np.array(curl_free_function)
+    return solenoidal_gradient, curl_free_gradient, curl_free_function
 
 def zero_crossings(vector):
     """ Returns the positions of the zero crossings
