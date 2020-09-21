@@ -11,6 +11,47 @@ from sklearn.decomposition import PCA
 from scipy import interpolate
 
 from pynhhd import nHHD
+import sys
+
+def get_histograms(tensor_files, n_bins = 1000, density=False, transform_before_histogram = None):
+    """ Computes histograms for tensor files. The bin boundaries are the same for all files.
+        They range from the min to the max of all files.
+    Args:
+        tensor_files: List of filenames
+        bins: Bins of histograms
+    Returns:
+        hists: List of histograms (absolute frequencies per tensor file)
+        bins_of_hists: Bin boundaries of the histograms
+    """
+    min_vals = []
+    max_vals = []
+    
+    for file in tensor_files:
+        print(".", end= "")
+        if transform_before_histogram:
+               print("Transforming")
+               t = transform_before_histogram(t)
+        max_val = np.nanmax(t)
+        min_val = np.nanmin(t)
+        min_vals.append(min_val)
+        max_vals.append(max_val)
+        
+    total_min = np.min(min_vals)
+    total_max = np.max(max_vals)
+    
+    histograms = []
+    bins_of_hists = []
+    
+    print(" ", end="")
+    
+    for file in tensor_files:
+        print(".", end= "")
+        t = np.load(file)
+        hist, bins = np.histogram(t[~np.isnan(t)], range = [total_min, total_max], bins = n_bins, density=density)
+        histograms.append(hist)
+        bins_of_hists.append(bins)
+        
+    return histograms, bins_of_hists
 
 def helmholtz_decomposition(vfields, mask = None, approach = "nhhd"):
     """ Computes the helmholtz_decomposition using the specified approach
@@ -20,18 +61,20 @@ def helmholtz_decomposition(vfields, mask = None, approach = "nhhd"):
         approach: Approach to compute helmholtz_decomposition. By now only natural helmholtz decomposition is supported.
     returns:
         solenoidal_gradient: Vector field representation of divergence free (solenoidal) component
+        solenoidal_function: 2d scalar potential representation of solenoidal_function.
         curl_free_gradient: Vector field representation of curl free component
         curl_free_function: 2d scalar function representation of curl free component. The gradient of this component is the vector field representation (solenoidal_gradient).
     """
     if approach != "nhhd":
         raise NotImplementedException("Only natural helmholtz decomposition is supported by now")
-
-    solenoidal_gradient = []
-    curl_free_gradient = []
-    harmonic_gradient = []
-
-    curl_free_function = []
-
+    
+    grad_field_shape = [vfields.shape[1], vfields.shape[2], vfields.shape[3], 2]
+    
+    solenoidal_gradient = np.ndarray(shape=grad_field_shape, dtype=np.float32)
+    curl_free_gradient = np.ndarray(shape=grad_field_shape, dtype=np.float32)
+    curl_free_function = np.ndarray(shape=vfields[0].shape, dtype=np.float32)
+    solenoidal_function = np.ndarray(shape=vfields[0].shape, dtype=np.float32)
+    
     for i in range(vfields.shape[1]):
         if i % 10 == 0:
             print(".", end="")
@@ -41,21 +84,22 @@ def helmholtz_decomposition(vfields, mask = None, approach = "nhhd"):
         dims = (vfield.shape[0],vfield.shape[1])
         nhhd = nHHD(grid=dims, spacings=(0.1,0.1))
         nhhd.decompose(vfield)
-        solenoidal_gradient.append(nhhd.r)
-        curl_free_gradient.append(nhhd.d)
-        curl_free_function.append(nhhd.nD)
+        solenoidal_gradient[i,:,:,:]= nhhd.r[:,:,:]#nhhd.r has shape [width,height,2]
+        curl_free_gradient[i,:,:,:]= nhhd.d[:,:,:]#nhhd.d has shape [width,height,2]
+        
+        curl_free_function[i] = nhhd.nD
+        solenoidal_function[i] = nhhd.nRu
+        
         if type(mask) != type(None):
-            solenoidal_gradient[-1][:,:,0][mask] = np.nan
-            solenoidal_gradient[-1][:,:,1][mask] = np.nan
-            curl_free_gradient[-1][:,:,0][mask] = np.nan
-            curl_free_gradient[-1][:,:,1][mask] = np.nan
-            curl_free_function[-1][:,:][mask] = np.nan
+            solenoidal_gradient[i][:,:,0][mask] = np.nan
+            solenoidal_gradient[i][:,:,1][mask] = np.nan
+            curl_free_gradient[i][:,:,0][mask] = np.nan
+            curl_free_gradient[i][:,:,1][mask] = np.nan
+            curl_free_function[i][:,:][mask] = np.nan
 
-    solenoidal_gradient, curl_free_gradient = np.array(solenoidal_gradient), np.array(curl_free_gradient)
     solenoidal_gradient = np.einsum("ijkl->lijk", solenoidal_gradient)
     curl_free_gradient = np.einsum("ijkl->lijk", curl_free_gradient)
-    curl_free_function = np.array(curl_free_function)
-    return solenoidal_gradient, curl_free_gradient, curl_free_function
+    return solenoidal_gradient, solenoidal_function, curl_free_gradient, curl_free_function
 
 def zero_crossings(vector):
     """ Returns the positions of the zero crossings
@@ -69,14 +113,17 @@ def zero_crossings(vector):
 def horn_schunck(tensor, frames=None):
     if not frames:
         frames = len(tensor)-1
-    x_comp = []
-    y_comp = []
+    x_comp = np.ndarray(tensor.shape, dtype=np.double)
+    y_comp = np.ndarray(tensor.shape, dtype=np.double)
+    tensor[np.isnan(tensor)] = 0#replace nans by zero
     for x in range(frames):
         U, V = HornSchunck(tensor[x,:,:], tensor[x+1,:,:], alpha=1.0, Niter=100)
-        x_comp.append(U)
-        y_comp.append(V)
-        print(".",end="")
-    return np.array(x_comp), np.array(y_comp)
+        x_comp[x] = U
+        y_comp[x] = V
+        if x % 100 == 0:
+           print(".",end="")
+           sys.stdout.flush()
+    return x_comp, y_comp
 
 def gaussian_filter_nan(U, sigma):
     """ Filters nan in masked images such that the masked are stays of constant size"""
@@ -320,10 +367,15 @@ def clipped_adaptive(tensor, clipping=.8):
     tensor = normalize(tensor)
     return tensor
 
+def sinus(hz = 1, sampling_freq = 100, length = 300):
+    x = np.linspace(0,length, sampling_freq*length)
+    y = np.sin(x*2*np.pi*hz)
+    return [x, y]
+
 def fourier(signal,sampling_rate = 100):
     freq = np.abs(np.fft.fft(signal))
     freq = freq[:len(freq)//2]
-    x = np.linspace(0,sampling_rate,len(freq))
+    x = np.linspace(0,sampling_rate/2,len(freq))
     return x, freq
 
 from scipy.signal import butter, lfilter

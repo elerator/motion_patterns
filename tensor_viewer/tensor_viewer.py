@@ -157,7 +157,7 @@ class TensorViewer(QWidget):
             self.ui.loading_info_stack.setCurrentIndex(0)
             self.ui.file_info.setText("Tensors have incompatible shapes")
         self.ui.loading_info_stack.setCurrentIndex(0)
-        self.ui.file_info.setText("Loaded tensor successfully")
+        self.ui.file_info.setText("Loaded "+self.latest_tensor_name+" successfully")
         self.display_slice(self.current_slice)
 
 
@@ -294,6 +294,10 @@ class TensorViewer(QWidget):
         """ Loads previously saved tensor as numpy container"""
         dialog = FileDialog(".npy")
         path = dialog.open_file()
+        if not os.path.isfile(path):
+           return
+        self.latest_tensor_name = os.path.basename(path)
+            
         self.tensor_loader.filepath = path
         self.ui.loading_info_stack.setCurrentIndex(0)
         self.tensor_loader.start()
@@ -351,8 +355,6 @@ class TensorViewer(QWidget):
                 mean -= np.min(mean)
                 mean /= np.max(mean)
                 self.frame_means.emit(mean)
-            except Exception as e:
-                QMessageBox.information(None, "Loading not possible","There was a problem loading the file " + str(e))
             except Exception as e:
                 print("No valid folder. Loading tensor failed")
                 print(e)

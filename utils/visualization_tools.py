@@ -34,7 +34,7 @@ def plot_vector_as_field(y, x, scale=1):
     print(np.rad2deg(np.arctan2(ty[0,0],tx[0,0])))
     display_combined(ty, tx, tx, scale=scale)
 
-def show_video(frames, frames1=None, n_frames = 20, startframe=0, orient = "horizontal", figsize=(10,10), vmin=0,vmax=1,cmap="viridis", show_framenumber=True):
+def show_video(frames, frames1=None, n_frames = 20, startframe=0, orient = "horizontal", figsize=(10,10), vmin=0,vmax=1,cmap="viridis", show_framenumber=True, jshtml=True):
     #if len(frames<20):
     #    n_frames = len(frames)
 
@@ -70,7 +70,9 @@ def show_video(frames, frames1=None, n_frames = 20, startframe=0, orient = "hori
             time_text = plt.figtext(0.5, 0.01, "time " + str(0), ha="center", fontsize=18)
 
         im = ax.imshow(frames[0], cmap = cmap, vmin=vmin,vmax=vmax)
-        ani = matplotlib.animation.FuncAnimation(fig, lambda i: show_frame(i, im, time_text), frames=n_frames).to_jshtml()
+        ani = matplotlib.animation.FuncAnimation(fig, lambda i: show_frame(i, im, time_text), frames=n_frames)
+        if jshtml:
+           return ani.to_jshtml()
         return ani
 
 def superimpose(img, background, cm_background = cm.gray, cm_foreground = cm.viridis):
