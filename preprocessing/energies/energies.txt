@@ -1,0 +1,4 @@
+/storage/michael/datasets/percentage_change
+/storage/michael/datasets/temporal_energy_1
+/storage/michael/datasets/spatial_energy_1
+

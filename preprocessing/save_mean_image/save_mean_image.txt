@@ -1,4 +1,7 @@
-/mnt/c/Users/eler/Desktop/projects/munich/motion_patterns/datasets/source_data
-runstart16_X1.tif
-runstart16_X2.tif
-#
+/storage/michael/datasets/source_data
+runstart13.tif
+runstart16.tif
+runstart23.tif
+runstart20.tif
+runstart26.tif
+#python save_mean_image.py -inputs save_mean_image.txt --mask_only

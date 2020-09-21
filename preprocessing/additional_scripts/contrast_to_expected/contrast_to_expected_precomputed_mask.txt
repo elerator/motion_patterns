@@ -1,0 +1,6 @@
+/mnt/c/Users/eler/Desktop/projects/munich/motion_patterns/datasets/contrast_to_pixelwise_mean_short
+/mnt/c/Users/eler/Desktop/projects/munich/motion_patterns/datasets/expected_images
+/mnt/c/Users/eler/Desktop/projects/munich/motion_patterns/datasets/contrast_to_expected_masked
+/mnt/c/Users/eler/Desktop/projects/munich/motion_patterns/datasets/source_data/mask_runstart16_X.png
+runstart16_X1.npy
+runstart16_X2.npy

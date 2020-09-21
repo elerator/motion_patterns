@@ -1,0 +1,1 @@
+python delete_files.py -folder /storage/michael/datasets/source_data -file_ending .png
