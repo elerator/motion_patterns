@@ -1,0 +1,3 @@
+/storage/michael/main_experiment/gcamp_corrected
+/storage/michael/main_experiment/gcamp_corrected_percentage_change
+/storage/michael/main_experiment/masks/both_hemispheres.png
