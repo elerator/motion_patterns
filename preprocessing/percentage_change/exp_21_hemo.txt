@@ -1,3 +1,0 @@
-/storage/michael/main_experiment/hemo
-/storage/michael/main_experiment/hemo_percentage_change
-/storage/michael/main_experiment/masks/both_hemispheres.png

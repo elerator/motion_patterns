@@ -1,8 +1,0 @@
-/storage/michael/main_experiment/gcamp
-/storage/michael/main_experiment/hemo
-/storage/Silvio/window/exp21_14_09_20_30277766_01_m/run00/run00.mat exp_21_run_00.npy
-/storage/Silvio/window/exp21_14_09_20_30277766_01_m/run02/run02.mat exp_21_run_02.npy
-/storage/Silvio/window/exp21_14_09_20_30277766_01_m/run04/run04.mat exp_21_run_04.npy
-/storage/Silvio/window/exp21_14_09_20_30277766_01_m/run07/run07.mat exp_21_run_07.npy
-/storage/Silvio/window/exp21_14_09_20_30277766_01_m/run09/run09.mat exp_21_run_09.npy
-/storage/Silvio/window/exp21_14_09_20_30277766_01_m/run11/run11.mat exp_21_run_11.npy

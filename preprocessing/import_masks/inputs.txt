@@ -1,4 +1,0 @@
-/storage/Silvio/ROI_revised
-/storage/michael/main_experiment/masks
-ROI_Labels both_hemispheres.png
-#/storage/Silvio/window/exp23_16_09_20_30277765_00_M/masks.mat

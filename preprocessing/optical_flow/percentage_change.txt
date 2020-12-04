@@ -1,3 +1,0 @@
-/storage/michael/datasets/percentage_change
-/storage/michael/datasets/optical_flow
-

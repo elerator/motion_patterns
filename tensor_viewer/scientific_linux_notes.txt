@@ -1,6 +1,0 @@
-1. XCB error
-Follow instructions in https://askubuntu.com/questions/308128/failed-to-load-platform-plugin-xcb-while-launching-qt5-app-on-linux-without to get full error log.
-
-Install missing library:
-
-sudo yum install libxkbcommon-x11-devel

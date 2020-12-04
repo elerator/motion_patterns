@@ -1,4 +1,0 @@
-/storage/michael/main_experiment/gcamp
-/storage/michael/main_experiment/hemo
-/storage/michael/main_experiment/gcamp_corrected_using_mean_hemo
-/storage/michael/main_experiment/gcamp_correction_correlations

@@ -1,5 +1,0 @@
-/mnt/c/Users/eler/Desktop/projects/munich/motion_patterns/datasets/contrast_to_pixelwise_mean
-/mnt/c/Users/eler/Desktop/projects/munich/motion_patterns/datasets/expected_images_masked_contrast_to_down_state
-/mnt/c/Users/eler/Desktop/projects/munich/motion_patterns/datasets/source_data/mask_runstart16_X.png
-runstart16_X1.npy runstart16_X2.npy
-#python expected_images.py -inputs expected_images_masked_contrast_to_down_state.txt --mask

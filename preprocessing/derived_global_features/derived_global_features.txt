@@ -1,7 +1,0 @@
-/storage/michael/datasets/percentage_change
-/storage/michael/datasets/optical_flow_magnitude
-/storage/michael/datasets/temporal_energy
-/storage/michael/datasets/spatial_energy
-/storage/michael/datasets/helmholtz/solenoidal_function/
-/storage/michael/datasets/helmholtz/curl_free_function/
-/storage/michael/datasets/derived_global_features/
