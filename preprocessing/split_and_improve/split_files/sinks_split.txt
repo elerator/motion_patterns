@@ -1,0 +1,3 @@
+/storage/michael/main_experiment/sparse_data
+/storage/michael/main_experiment/sources_split
+/storage/michael/main_experiment/helmholtz/curl_free_function

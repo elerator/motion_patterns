@@ -1,0 +1,56 @@
+% Chapter 1
+
+\chapter{Introduction} % Main chapter title
+
+\label{introduction}
+
+%----------------------------------------------------------------------------------------
+
+% Define some commands to keep the formatting separated from the content 
+\newcommand{\keyword}[1]{\textbf{#1}}
+\newcommand{\tabhead}[1]{\textbf{#1}}
+\newcommand{\code}[1]{\texttt{#1}}
+\newcommand{\file}[1]{\texttt{\bfseries#1}}
+\newcommand{\option}[1]{\texttt{\itshape#1}}
+
+%----------------------------------------------------------------------------------------
+
+Neural signal transduction at different levels of alertness occurs in distinct shapes (Gemignani et. al 2015 p. 137f.). One may observe stimulus dependent activity during wakefulness but also spontaneous patterns of activation that dominate in stages of deep sleep and unconsciousness (Dang-Vu et. al. 2011). Under deep anesthesia, fast neuronal firing patterns in the brain are replaced by slow, traveling waves of activation, which seem to coincide with the loss of alertness. This process can be captured by modern imaging techniques such as high speed fluorescence microscopy that does not only have a high temporal resolution but also a high spatial resolution (Celotto 2018).
+
+\begin{figure}[th]
+\centering
+\includegraphics{Figures/Electron}
+\decoRule
+\caption[An Electron]{An electron (artist's impression).}
+\label{fig:Electron}
+\end{figure}
+
+High speed fluorescence microscopy reveals complex temporospatial patterns in the brain signal of transgenic mice under anesthesia. They manifest in decisive vector fields of dense optical flow on a global or local scale that can be calculated for each pair of subsequent frames of high speed recordings and indicate how neural signals travel in the cortex and how they develop focally over time (Townsend and Gong, 2018 p. 9). To capture the structure of the data in a condensed manner, the probability for the occurrence of specific configurations of motion vectors  - e.g. spirals or plane waves - in different regions can be computed (Townsend and Gong, 2018 p. 12). Motion patterns in dense optical flow describe important characteristics of neural signal processing. They are hence a candidate for a neural correlate of consciousness (NCC) at different levels of anesthesia.
+
+\begin{figure}[th]
+\centering
+\includegraphics{Figures/test1}
+\decoRule
+\caption[An Electron]{An electron (artist's impression).}
+\label{fig:test1}
+\end{figure}
+
+\begin{figure}[th]
+\centering
+\includegraphics{Figures/test2}
+\decoRule
+\caption[An Electron]{An electron (artist's impression).}
+\label{fig:test2}
+\end{figure}
+
+A highly sensitive approach to quantify consciousness using electrophysiological recordings is the Perturbational Complexity Index or PCI (Casarotto et al. 2016). Neural information processing is highly associative. This is reflected in a high number of inter-projections between brain regions (Markov et al. 2014) and means that information processing in biological neural networks is of highly recurrent nature (Maass 2002). The recurrent structure of neural networks has the effect that even during sleep or mild anesthesia, where signal transduction is rather inhibited, one may record a temporally extended response to short bursts of stimulation in healthy subjects. To compute the PCI transcranial magnetic stimulation (TMS) is applied and the response in the Electroencephalography (EEG) analyzed to retrieve the information content of the response using a lossless compression technique. A PCI below 0.31 reliably indicates the lack of consciousness (Casarotto et al. 2016). As EEG captures neural activity in a rather indirect and aggregated way it remains unclear however what neural patterns are the reason for the complexity in the signals.  
+
+The overarching goal of this master thesis is to investigate how the extent of information processing and integration in the brain can be quantified based on patterns in the optical flow of neuroimaging signals. Hence an approach is developed to automatically detect motion patterns. Therefore the aim is (1) to measure the information flow in the brain on a global and local scale using dense optical flow and a custom approach based on cluster tracking (2) to establish a new approach to retrieve meaningful descriptions of motion patterns and (3) to determine which patterns correlate with different levels of anesthesia as well as named metric for alertness. In order to illustrate use cases of the approach beyond quantifying alertness it is (4) tested whether the occurrence and dynamics of slow waves could be predicted by small scale temporospatial motion patterns. In summary it is investigated whether the approach is suitable to identify characteristic motion patterns for different levels of alertness. 
+
+The question how movement patterns can be characterized appropriately relies within the core of interest. In principle one may discern two options. On the one hand, dense vector fields can be used directly to derive metrics or perform predictions. This means one employs feature engineering by using domain knowledge to detect manually defined patterns and reduce the dimensionality. One the other hand one can use trainable machine learning algorithms for this purpose.
+
+Townsend and Gong (2018) suggest an approach that falls into the earlier category. Using their approach one may detect six different focal patterns (such as e.g. spirals, inward/outward movement or saddles) as well as synchrony and large scale propagating waves based on linear decomposition. These patterns are undoubtedly important configurations of motion vectors. As they are defined somewhat arbitrarily it is nonetheless unclear whether they are best suitable to capture the variance in the data.
+
+Hence, an approach based on variational autoencoders is proposed for data driven dimension reduction and quantification of the information content of neural signal conduction at different levels of anesthesia. If machine learning algorithms are used for dimensionality reduction the parameters of the mapping function are determined automatically by the optimizer. This allows to retrieve the features that account for the largest amount of variance in a more objective manner. Moreover, the approach promises to be of higher flexibility as multiple matrices of motion vectors can be used to describe longer lasting patterns of motion. This flexibility increases the chances to identify patterns that correlate with alertness. Autoencoders are especially appealing for dimensionality reduction also as reconstructed vector fields can be directly visualized. In the case of neural signal transduction this means that compressed motion patterns in dense optical flow can be reconstructed in a manner  that is understandable for the researcher. This allows to identify whether meaningful categories are learnt.
+
+In summary it is aimed for a better understanding of information integration in the brain by establishing a technique that allows to put temporospatial patterns and metrics for the alertness into context. This is especially important as it bears potentials for more direct tests of the Information Integration Theory as it allows not only to observe temporal dynamics that could indicate disconnectedness (by synchrony/asynchrony) or spatial dynamics (separated neural activity) but both at the same time. In the future temporospatial patterns of neural activity could potentially be used to more accurately describe the state of the brain at different levels of anesthesia.

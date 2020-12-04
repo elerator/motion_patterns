@@ -1,0 +1,3 @@
+/storage/michael/main_experiment/masks/both_hemispheres.png
+/storage/michael/main_experiment/optical_flow_improved
+/storage/michael/main_experiment/helmholtz_per_wave_smooth

@@ -1,0 +1,3 @@
+/storage/michael/main_experiment/improved_optical_flow_smooth
+/storage/michael/main_experiment/pc_gcamp_split_improved_smooth
+/storage/michael/main_experiment/vector_field_animations

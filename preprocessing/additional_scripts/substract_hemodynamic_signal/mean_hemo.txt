@@ -1,0 +1,5 @@
+/storage/michael/main_experiment/gcamp
+/storage/michael/main_experiment/hemo
+/storage/michael/main_experiment/gcamp_correction_mean_hemo
+/storage/michael/main_experiment/gcamp_correction_mean_hemo_additional
+#python substract_hemodynamic_signal.py -inputs mean_hemo.txt --use_mean_hemo

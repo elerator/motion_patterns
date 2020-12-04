@@ -1,0 +1,3 @@
+/storage/michael/main_experiment/helmholtz_per_wave_smooth/solenoidal_gradient
+/storage/michael/main_experiment/aggregated_flow
+/storage/michael/main_experiment/sparse_data/dataset.pkl

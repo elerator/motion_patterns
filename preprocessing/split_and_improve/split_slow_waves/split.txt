@@ -1,0 +1,5 @@
+/storage/michael/main_experiment/gcamp_percentage_change
+/storage/michael/main_experiment/hemo_percentage_change
+/storage/michael/main_experiment/sparse_data
+/storage/michael/main_experiment/metadata/exp_21.csv
+/storage/michael/main_experiment/metadata/exp_23.csv

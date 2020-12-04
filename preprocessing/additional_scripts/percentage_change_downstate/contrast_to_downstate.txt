@@ -1,0 +1,8 @@
+/storage/michael/datasets/source_data
+/storage/michael/datasets/percentage_change_downstate
+runstart13.tif runstart13_X1.tif runstart13_X2.tif
+runstart16.tif runstart16_X1.tif runstart16_X2.tif
+runstart20.tif runstart20_X1.tif runstart20_X2.tif
+runstart23.tif runstart23_X1.tif runstart23_X2.tif
+runstart26.tif runstart26_X1.tif runstart26_X2.tif
+#python contrast_to_downstate.py -inputs contrast_to_downstate.txt

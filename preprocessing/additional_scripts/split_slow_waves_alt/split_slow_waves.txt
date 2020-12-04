@@ -1,0 +1,4 @@
+/mnt/c/Users/eler/Desktop/projects/munich/motion_patterns/datasets/contrast_to_pixelwise_mean
+/mnt/c/Users/eler/Desktop/projects/munich/motion_patterns/datasets/slow_wave_segments
+runstart16_X2.npy
+#python split_slow_waves.py -inputs split_slow_waves.txt -min_duration 10 -smoothing1 10 -smoothing2 4 -delay 4

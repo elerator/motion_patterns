@@ -1,0 +1,4 @@
+/storage/michael/main_experiment/helmholtz_per_wave_smooth/solenoidal_gradient
+/storage/michael/main_experiment/pc_gcamp_split_smooth
+/storage/michael/main_experiment/animations/flow/flow
+/storage/michael/main_experiment/animations/flow/improved_contrast

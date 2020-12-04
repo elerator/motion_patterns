@@ -1,0 +1,4 @@
+/storage/michael/main_experiment/masks/both_hemispheres.png
+/storage/michael/main_experiment/optical_flow
+/storage/michael/main_experiment/helmholtz
+

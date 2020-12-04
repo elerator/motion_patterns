@@ -1,0 +1,7 @@
+/mnt/c/Users/eler/Desktop/projects/munich/motion_patterns/datasets/contrast_to_pixelwise_mean
+/mnt/c/Users/eler/Desktop/projects/munich/motion_patterns/datasets/expected_images_masked
+/mnt/c/Users/eler/Desktop/projects/munich/motion_patterns/datasets/final_contrast_to_expected
+/mnt/c/Users/eler/Desktop/projects/munich/motion_patterns/datasets/source_data/mask_runstart16_X.png
+runstart16_X1.npy
+runstart16_X2.npy
+#python contrast_to_expected.py -inputs improved_bg_contrast_to_expected.txt --make_expected_mean_match --debug --mask
