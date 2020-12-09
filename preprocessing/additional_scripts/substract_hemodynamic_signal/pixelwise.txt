@@ -1,5 +1,3 @@
 /storage/michael/main_experiment/gcamp
 /storage/michael/main_experiment/hemo
-/storage/michael/main_experiment/gcamp_correction
-/storage/michael/main_experiment/gcamp_correction_additional
-#python substract_hemodynamic_signal.py -inputs pixelwise.txt
+/storage/silviu/main_experiment/gcamp_correction

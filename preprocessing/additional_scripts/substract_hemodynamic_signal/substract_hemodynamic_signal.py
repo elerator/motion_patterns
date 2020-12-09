@@ -18,63 +18,21 @@ from scipy.ndimage import gaussian_filter
 from skimage.util import view_as_windows
 
 
-def process(inpath, hemo, outpath, corr_out = None, predict_with_mean_hemo = False, smooth_hemo = False, debug = False):
+def process(inpath, hemo, outpath, add, debug = False):
     """ Performs preprocessing. Substracts prediction of a linear regression model based on the hemodynamic signal from the GCamp signal.
-    Args:
-       predict_with_mean_hemo: If True predictions are made using the framewise mean of the hemodynamic variable to predict each pixel vector using a seperate linear regression model. Otherwise the pixel-vector at the same position in the hemodynamic signal is used to do so.
-       inpath: input path
-       outpath: output path
-       debug: Debug mode
     """
     gcamp = np.load(inpath)
-    hemo = np.load(hemo)
-    if debug:
-       hemo = hemo[:1000]
-       gcamp = gcamp[:1000]
-    hemo_mean = np.nanmean(hemo, axis = (1,2))
-    hemo = (hemo.T - gaussian_filter(hemo_mean,250)).T
-    hemo_mean = hemo_mean - gaussian_filter(hemo_mean,250)#Remove potential slow trend
+    mean = np.mean((gcamp+1), axis=0)
+    pc_gcamp = ((gcamp+1) - mean)
+    pc_gcamp /= mean
+    pc_gcamp *= 100
     
-    if smooth_hemo:
-       for i, frame in enumerate(hemo):
-           if i % 10:
-                print(".", end = "")
-           hemo[i] = gaussian_filter_nan(frame, 10)
-       for y in range(hemo[0].shape[0]):
-           if y % 10:
-                print("-", end = "")
-           for x in range(hemo[0].shape[1]):
-              if np.any(hemo[:, y, x] == np.nan):
-                 continue
-              hemo[:, y, x] = gaussian_filter(hemo[:,y,x], 10)
+    hemo = np.load(hemo)
+    mean = np.mean((hemo+1), axis=0)
+    pc_hemo = ((pc_hemo+1) - mean)
+    pc_hemo /= mean
+    pc_hemo *= 100
 
-    if debug:
-       plt.imshow(hemo[0])
-       plt.show()
-    rs = np.ndarray(hemo[0].shape)
-    rs.fill(np.nan)
-
-    for y in range(gcamp.shape[1]):
-        for x in range(gcamp.shape[2]):
-            if predict_with_mean_hemo:
-               hemo_vector = hemo_mean
-            else:
-               hemo_vector = hemo[:, y, x]
-            #hemo_vector = hemo_vector - gaussian_filter(hemo_vector, 1000)
-            if np.any(np.isnan(hemo_vector)) or np.any(np.isnan(gcamp[:,y,x])):
-               continue
-            slope, intercept, rval, _, _ = linregress(hemo_vector, gcamp[:,y,x])
-            rs[y, x] = rval
-            prediction = intercept + slope * hemo_vector
-            gcamp[:, y,x] = gcamp[:, y, x] - prediction
-
-    np.save(corr_out, rs)
-    fig, ax = plt.subplots(1)
-    fig.colorbar(ax.imshow(rs))
-    fig.savefig(corr_out + "_mean_corr_"+str(np.round(np.nanmean(rs),2))+".png")
-    plt.close(fig)
-    pd.DataFrame({"mean_corr" : [np.nanmean(rs)], "max_corr" : [np.nanmax(rs)]}).to_csv(corr_out+".csv")
-    np.save(outpath, gcamp)
 
 def skip_comment(file):
     while True:
@@ -127,8 +85,6 @@ if __name__ == '__main__':
     parser = argparse.ArgumentParser(description = 'Preprocessing script')
     parser.add_argument('-inputs', help='Path to config file.')
     parser.add_argument('--debug',  action="store_true")
-    parser.add_argument('--use_mean_hemo',  action="store_true")
-    parser.add_argument('--smooth_hemo',  action="store_true")
 
     parser.add_argument('--override',  action="store_true")
     parser.add_argument('--parallel_processes',  action="store_true")
@@ -163,9 +119,8 @@ if __name__ == '__main__':
             print("Skipping " + inpath + " because outputfiles exist already")
             continue
         if args.parallel_processes:
-           p1 = Process(target=lambda: process(inpath, hemo, outpath, corr_path, args.use_mean_hemo, args.use_correlated_periods, args.smooth_hemo, args.debug))
+           p1 = Process(target=lambda: process(inpath, hemo, outpath, corr_path, args.debug))
            p1.start()
            processes.append(p1)
         else:
-           process(inpath, hemo, outpath, corr_path, args.use_mean_hemo, args.smooth_hemo, args.debug)
-
+           process(inpath, hemo, outpath, corr_path, args.debug)

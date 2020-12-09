@@ -11,7 +11,10 @@ from sklearn.decomposition import PCA
 from scipy import interpolate
 from scipy.interpolate import interp1d
 
-from pynhhd import nHHD
+try:
+   from pynhhd import nHHD
+except:
+   print("Warning. Helmholtz-Decomposition not available")
 import sys
 
 

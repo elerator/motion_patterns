@@ -1,5 +1,5 @@
-/storage/michael/main_experiment/gcamp
-/storage/michael/main_experiment/hemo
+/storage/silviu/main_experiment/gcamp
+/storage/silviu/main_experiment/hemo
 /storage/Silvio/window/exp21_14_09_20_30277766_01_m/run00/run00.mat exp_21_run_00.npy
 /storage/Silvio/window/exp21_14_09_20_30277766_01_m/run02/run02.mat exp_21_run_02.npy
 /storage/Silvio/window/exp21_14_09_20_30277766_01_m/run04/run04.mat exp_21_run_04.npy

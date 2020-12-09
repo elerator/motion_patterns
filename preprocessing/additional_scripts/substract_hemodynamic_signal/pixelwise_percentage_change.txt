@@ -1,5 +1,0 @@
-/storage/michael/main_experiment/gcamp_percentage_change
-/storage/michael/main_experiment/hemo_percentage_change
-/storage/michael/main_experiment/gcamp_correction_pc
-/storage/michael/main_experiment/gcamp_correction_pc_additional
-#python substract_hemodynamic_signal.py -inputs pixelwise_percentage_change.txt --smooth_hemo
