@@ -17,12 +17,16 @@ from skimage import io
 import json
 
 def percentage_change(frames, mask, smoothing = (2,10,10), debug = False):
-    mean = np.mean((frames+1), axis=0)
+    prev_mask = np.isnan(frames[0,:,:])#rememember nans
+    mean = np.mean((frames), axis=0)
     if debug:
        frames = frames[:2000]
-    percentage_change = ((frames+1) - mean)
+    percentage_change = ((frames) - mean)
     percentage_change /= mean
     percentage_change *= 100
+
+    percentage_change[np.isnan(percentage_change)] = 0#When mean is zero and pixel is zero there is 0/0 which results in NaN
+    percentage_change[:,mask] = np.nan
     
     n_frames = len(percentage_change)
     ran = list(range(0,n_frames,1000))
