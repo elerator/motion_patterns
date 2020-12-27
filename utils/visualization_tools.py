@@ -9,7 +9,7 @@ from utils.data_transformations import stretch
 from mpl_toolkits.axes_grid1 import make_axes_locatable
 
 
-def render_arrow_components(up = 1, down=1, left=1, right=1, cmap = "Blues"):
+def render_arrow_components(up = 1, down=1, left=1, right=1, cmap = "Blues", black_bg = True):
     """ Plots four arrows that point upwards, downwards, leftwards and rightwards
     Args:
         up: Color of upwards arrow (0-1)
@@ -19,14 +19,14 @@ def render_arrow_components(up = 1, down=1, left=1, right=1, cmap = "Blues"):
     Returns:
         RGB array
     """
-    fig, ax = plt.subplots(1, figsize=(2,2))
+    fig, ax = plt.subplots(1, figsize=(2,2), facecolor = "black")
     plt.axis("off")
     ax.set_xlim(0,10)
     ax.set_ylim(0,10)
 
     offset_center = .5
     blue = .54
-    
+
     epsilon = .001
     up, down, left, right = [v - epsilon for v in [up, down, left, right]]
     colors = [cm.get_cmap(cmap)([up, down, left, right])][0]
@@ -35,6 +35,7 @@ def render_arrow_components(up = 1, down=1, left=1, right=1, cmap = "Blues"):
     ax.arrow(5, 5-offset_center, 0, -2, width = .5, color = colors[1])#down
     ax.arrow(5-offset_center, 5, -2, 0, width = .5, color = colors[2])#left
     ax.arrow(5+offset_center, 5, 2, 0, width = .5, color = colors[3])#left
+
     res = fig2rgb_array(fig)
     plt.close(fig)
     return res
@@ -170,68 +171,6 @@ def fig2rgb_array(fig):
     ncols, nrows = fig.canvas.get_width_height()
     return np.fromstring(buf, dtype=np.uint8).reshape(nrows, ncols, 3)
 
-def manifold(decoder, x_range = [-2,2], y_range = [-0.5, -2.5], n = 10, figsize=(8,8), dpi = 100, n_interp = 100, scale="sqrt"):
-    """ Uses the decoder of a varaitional autoencoder (keas model) with two latent neurons and performs the forward step for z[0] and z[1] on an evently spaced grid.
-        The variational autoencoder predicts a vector. The data is normalized and the width and height of the input are predcicted independantly (vector[-2:]).
-        Plots a manifold of reconstructions.
-    Args:
-        decoder: Keras model with input size two that predicts the vector.
-        x_range: Range for sampling from the latent layer neuron z[0]
-        y_range: Range for sampling from the latent layer neuron z[1]
-        figsize: Size of the matplotlib figure
-        dpi: Dots per inch of the fugure
-        n_interp: Number of intepolated samples
-        scale: Either sqrt or linear. Defines the scale of both the x and y axis of each plot in the manifold
-    Returns:
-        An rgb numpy array
-    """
-    x = np.linspace(x_range[0], x_range[1], n)
-    y = np.linspace(y_range[0], y_range[1], n)
-    m = np.array(np.meshgrid(y, x)).T
-    
-    predictions = np.ndarray((m.shape[0], m.shape[1]), dtype=np.ndarray)
-    heights = np.ndarray((m.shape[0], m.shape[1]))
-    widths = np.ndarray((m.shape[0], m.shape[1]))
-    
-    for y in range(predictions.shape[0]):
-        for x in range(predictions.shape[1]):
-            try:
-                pred = decoder.predict(np.array([[m[x, -y]]], dtype=np.float32)).flatten()
-            except:
-                pred = decoder.predict(np.array([m[x, -y]], dtype=np.float32)).flatten()
-            heights[y,x] = pred[-2]
-            widths[y,x] = pred[-1]
-            predictions[y,x] = pred[:-2]
-            
-            
-    heights = heights / np.max(heights)
-    if scale == "sqrt":
-        heights = np.sqrt(heights)
-    widths = widths / np.max(widths)
-    if scale == "sqrt":
-        widths = np.sqrt(widths)
-    
-    fig, ax = plt.subplots(n, n, figsize= figsize, dpi = dpi)
-    plt.subplots_adjust(wspace=0, hspace=0, left=0, right=1, top=1, bottom=0)
-        
-    for y in range(predictions.shape[0]):
-        for x in range(predictions.shape[1]):
-            print(widths[y,x])
-            real_width = np.max([int(np.min(widths[y,x]) * n_interp), 2])#scale such that maximal width = n_interp
-            pred = stretch(predictions[y,x], real_width)# ...
-            pred *= heights[y,x]#Scale height
-            indent = n_interp - real_width#Indent > 0
-            vector = np.zeros(n_interp, dtype=np.float)
-            vector.fill(np.nan)
-            vector[indent:indent+real_width] = pred
-            a = ax[y,x]#[n-1-y,x]
-            a.set_xlim(0,n_interp)
-            a.plot(pred)
-            a.axis("off")
-            a.set_ylim(0,1)
-    return fig2rgb_array(fig)
-
-
 import numpy as np
 import matplotlib.pyplot as plt
 from matplotlib.collections import LineCollection
@@ -249,20 +188,20 @@ def plot_colored(x, y, ax = None, cmap = 'plasma', set_lims = True):
     """
     if type(ax) == type(None):
         fig, ax = plt.subplots(1)
-        
+
     t = np.linspace(0, 10, len(x))
     def points_to_lc_segements(x, y):
         points = np.array([x, y]).T.reshape(-1, 1, 2)
         segments = np.concatenate([points[:-1], points[1:]], axis=1)
         return segments
-    
+
     lc = LineCollection(points_to_lc_segements(x,y), cmap=plt.get_cmap(cmap),norm=plt.Normalize(0, 10))
     lc.set_array(t)
     lc.set_linewidth(3)
-    
+
     if set_lims:
         ax.set_xlim(np.min(x),np.max(x))
-        ax.set_ylim(np.min(y),np.max(y))    
+        ax.set_ylim(np.min(y),np.max(y))
     ax.add_collection(lc)
     return ax
 
@@ -277,7 +216,7 @@ def add_colorbar(ax, vmin = 0, vmax = 1, cmap = "viridis", unit_string = None, f
         fontsize: Fontsize of unit_string
     """
     divider = make_axes_locatable(ax)
-    ax_cb = divider.new_horizontal(size="5%", pad=0.05)   
+    ax_cb = divider.new_horizontal(size="5%", pad=0.05)
     norm = matplotlib.colors.Normalize(vmin=vmin, vmax= vmax)
     cb1 = matplotlib.colorbar.ColorbarBase(ax_cb, cmap=matplotlib.cm.get_cmap(cmap), norm = norm, orientation='vertical')
     if unit_string:

@@ -36,27 +36,35 @@ def sampling(args):
     epsilon = K.random_normal(shape=(batch, dim))
     return z_mean + K.exp(0.5 * z_log_var) * epsilon
 
-def get_vae_loss(image_input, values_input, image_decoded, values_decoded, z_mean, z_log_var, reconstruction_loss = "mse", impact_reconstruction_loss = 1):
+def loss_direction_squared():
+    loss_up = K.mean(mse(values_input[:,130], values_decoded[:,130]))
+    loss_down = K.mean(mse(values_input[:,131], values_decoded[:,131]))
+    loss_left = K.mean(mse(values_input[:,132], values_decoded[:,132]))
+    loss_right = K.mean(mse(values_input[:,133], values_decoded[:,133]))
+    loss_direction = K.mean((loss_up**2+loss_down**2+loss_left**2+loss_right**2))/4
+
+def get_vae_loss(image_input, values_input, image_decoded, values_decoded, z_mean, z_log_var, impact_reconstruction_loss = 1):
     # VAE loss = mse_loss or binary_crossentropy + kl_loss
-    if reconstruction_loss == "binary_crossentropy":
-        img_reconstruction_loss = binary_crossentropy(image_input, image_decoded)
-        values_reconstruction_loss = binary_crossentropy(value_input, values_decoded)
+    #values input is 2D with shape [None, 130+n_additional_features]
+    img_reconstruction_loss = K.mean(mse(image_input, image_decoded))
+    loss_signal_in_time = K.mean(mse(values_input[:,:128], values_decoded[:,:128]))
+    loss_width_height = K.mean(mse(values_input[:,128:130], values_decoded[:,128:130]))
+    loss_direction = K.mean(mse(values_input[:,130:134], values_decoded[:,130:134]))
 
-    elif reconstruction_loss == "mse":
-        img_reconstruction_loss = mse(image_input, image_decoded)
-        values_reconstruction_loss = mse(values_input, values_decoded)
-
-    reconstruction_loss = K.mean(img_reconstruction_loss) + K.mean(values_reconstruction_loss) * 16#64
+    #values_reconstruction_loss_width_height = K.print_tensor(values_reconstruction_loss_width_height, message ='loss')
+    reconstruction_loss = img_reconstruction_loss + loss_signal_in_time * 16 + 8 * loss_width_height#16#64
+    #reconstruction_loss = img_reconstruction_loss + loss_signal_in_time * 16 + 8 * loss_width_height + 16 * loss_direction #16#64
+    #reconstruction_loss = img_reconstruction_loss + loss_signal_in_time * 16 + 16 * loss_width_height + loss_direction #16#64
 
     kl_loss = 1 + z_log_var - K.square(z_mean) - K.exp(z_log_var)
     kl_loss = K.sum(kl_loss, axis=-1)
     kl_loss *= -0.5
     vae_loss = K.mean(impact_reconstruction_loss*reconstruction_loss + kl_loss)
-    return vae_loss
+    return vae_loss, loss_width_height, loss_signal_in_time, img_reconstruction_loss, loss_direction
 
-def get_value_encoder_model():
+def get_value_encoder_model(n_values):
     value_model = Sequential()
-    value_model.add(Flatten(input_shape=[130, 1, 1]))
+    value_model.add(Flatten(input_shape=[n_values, 1, 1]))
     value_model.add(Dense(16))
     value_model.add(Activation('relu'))
     value_model.add(Dense(16))
@@ -65,10 +73,10 @@ def get_value_encoder_model():
     value_model.add(Activation('relu'))
     return value_model
 
-def value_encoder():
-    input = Input(shape=(130,), name='value_inputs')
-    x = Dense(16, activation='relu')(input)
-    x = Dense(16, activation='relu')(x)
+def value_encoder(n_values = 134):
+    input = Input(shape=(n_values,), name='value_inputs')
+    x = Dense(32, activation='relu')(input)
+    x = Dense(32, activation='relu')(x)
     output = Dense(16, activation='relu')(x)
     return input, output
 
@@ -83,9 +91,9 @@ def image_encoder():
     image_input, image_output, image_model = to_functional_model(image_model)
     return image_input, image_output
 
-def encoder():
+def encoder(n_values = 134):
     image_input, image_output = image_encoder()
-    value_input, value_output, = value_encoder()
+    value_input, value_output, = value_encoder(n_values)
     x = concatenate([image_output, value_output])
     z_mean = Dense(2, name='z_mean')(x)
     z_log_var = Dense(2, name='z_log_var')(x)
@@ -115,19 +123,19 @@ def image_decoder(encoded):
     #x = layers.UpSampling2D((2, 2))(x)
     return x
 
-def value_decoder(encoded):
-    x = Dense(16, activation='relu')(encoded)
-    x = Dense(16, activation='relu')(x)
-    x = Dense(130, activation='relu')(x)
+def value_decoder(encoded, n_values):
+    x = Dense(32, activation='relu')(encoded)
+    x = Dense(32, activation='relu')(x)
+    x = Dense(n_values, activation='relu')(x)
     return x
 
-def decoder():
+def decoder(n_values = 134):
     latent_inputs = Input(shape=(2,), name='z_sampling')
     x = Dense(512+16, activation='relu')(latent_inputs)
     branch_values = Lambda( lambda x: tf.slice(x, (0, 0), (-1, 16)))(x)
     branch_image = Lambda( lambda x: tf.slice(x, (0, 16), (-1, 512)))(x)
     image_decoded = image_decoder(branch_image)
-    values_decoded = value_decoder(branch_values)
+    values_decoded = value_decoder(branch_values, n_values)
     return latent_inputs, [image_decoded, values_decoded]
     #x = latent_inputs
     #for l in range(layers):

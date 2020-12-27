@@ -8,6 +8,140 @@ from utils.diverse import *
 from utils.visualization_tools import *
 from utils.data_transformations import *
 from utils.data_transformations import stretch
+from scipy.ndimage import median_filter
+
+
+def manifold_of_images(decoder_model, x_range, y_range, n =  15, pos_in_multi_output = 0, sources_sinks = "sources", enhance_contrast = True):
+    xs = np.linspace(x_range[0], x_range[1], n)
+    ys = np.linspace(y_range[0], y_range[1], n)
+
+    predictions = np.ndarray((n*64, n*64))
+
+    px = 0
+    py = 0
+    for y in ys:
+        px = 0
+        for x in xs:
+            try:
+                pred = decoder_model.predict(np.array([[x, -y]], dtype=np.float32))
+            except:
+                pred = decoder_model.predict(np.array([x, -y], dtype=np.float32))
+
+            if sources_sinks == "sources":
+                img = normalize(pred[pos_in_multi_output][0,:,:64,0])
+            elif sources_sinks == "sinks":
+                img = normalize(pred[pos_in_multi_output][0,:,64:,0])
+
+            predictions[py*64:(py*64)+64,
+                        px*64:(px*64)+64] = img
+            #plt.imshow(pred[0][:,:,:])
+            #plt.show()
+            px +=1
+        py += 1
+
+    if enhance_contrast:
+        #Replace background i.e zero by lowest foreground value
+        predictions[predictions == 0] = np.nan
+        predictions[np.isnan(predictions)] = np.nanmin(predictions)
+    return predictions
+
+import random
+def manifold_of_vector_components(figsize=(5,5), dpi = 200, n = 15, decoder_model = None, x_range = [0,1], y_range = [0, 1], cmap = "inferno", debug = False):
+    udlr = np.ndarray(shape = (n,n), dtype = np.ndarray)
+    if decoder_model:
+        for y_pos, y in enumerate(np.linspace(y_range[0], y_range[1], n)):
+            for x_pos, x in enumerate(np.linspace(x_range[0], x_range[1], n)):
+                udlr[y_pos,x_pos] = np.array(decoder_model.predict([[[x,-y]]])[1][0][2:6])
+
+    fig, ax = plt.subplots(n, n, figsize= figsize, dpi = dpi)
+    plt.subplots_adjust(wspace=0, hspace=0, left=0, right=1, top=1, bottom=0)
+
+    for y in range(n):
+        for x in range(n):
+            if debug:
+                ax[y,x].imshow(render_arrow_components(random.uniform(0,1) ,random.uniform(0,1), random.uniform(0,1) ,random.uniform(0,1) ))
+            else:
+                ax[y,x].imshow(render_arrow_components(udlr[y,x][0], udlr[y,x][1], udlr[y,x][2], udlr[y,x][3], cmap = cmap))
+                ax[y,x].set_facecolor('black')
+
+            ax[y,x].axis("off")
+    return fig2rgb_array(fig)
+
+def manifold(decoder, x_range = [-2,2], y_range = [-0.5, -2.5], n = 10, figsize=(8,8), dpi = 100, n_interp = 100, scale="sqrt", multi_output = None, medfilt = None):
+    """ Uses the decoder of a varaitional autoencoder (keas model) with two latent neurons and performs the forward step for z[0] and z[1] on an evently spaced grid.
+        The variational autoencoder predicts a vector. The data is normalized and the width and height of the input are predcicted independantly (vector[-2:]).
+        Plots a manifold of reconstructions.
+    Args:
+        decoder: Keras model with input size two that predicts the vector.
+        x_range: Range for sampling from the latent layer neuron z[0]
+        y_range: Range for sampling from the latent layer neuron z[1]
+        figsize: Size of the matplotlib figure
+        dpi: Dots per inch of the fugure
+        n_interp: Number of intepolated samples
+        scale: Either sqrt or linear. Defines the scale of both the x and y axis of each plot in the manifold
+    Returns:
+        An rgb numpy array
+    """
+    xs = np.linspace(x_range[0], x_range[1], n)
+    ys = np.linspace(y_range[0], y_range[1], n)
+
+    predictions = np.ndarray((n, n), dtype=np.ndarray)
+    heights = np.ndarray((n, n))
+    widths = np.ndarray((n, n))
+
+    for y, val_y in enumerate(ys):
+        for x, val_x in enumerate(xs):
+            try:
+                pred = decoder.predict(np.array([[[val_x, -val_y]]], dtype=np.float32))
+            except:
+                pred = decoder.predict(np.array([[val_x, -val_y]], dtype=np.float32))
+
+            if multi_output:
+                pred = pred[2].flatten()
+            else:
+                pred = pred.flatten()
+
+            if scale == "normal":
+                heights[y,x] = 1
+                widths[y,x] = 1
+            else:
+                if multi_output:
+                    heights[y,x] = pred[1]
+                    widths[y,x] = pred[1]
+                else:
+                    heights[y,x] = pred[128]
+                    widths[y,x] = pred[129]
+                #print(pred[129])
+            predictions[y,x] = pred[:128]
+            if medfilt:
+                predictions[y,x] = median_filter(predictions[y,x], medfilt)
+
+    if not (scale == "normal"):
+        heights = heights / np.max(heights)
+        if scale == "sqrt":
+            heights = np.sqrt(heights)
+        widths = widths / np.max(widths)
+        if scale == "sqrt":
+            widths = np.sqrt(widths)
+
+    fig, ax = plt.subplots(n, n, figsize= figsize, dpi = dpi)
+    plt.subplots_adjust(wspace=0, hspace=0, left=0, right=1, top=1, bottom=0)
+
+    for y in range(predictions.shape[0]):
+        for x in range(predictions.shape[1]):
+            real_width = np.max([int(np.min(widths[y,x]) * n_interp), 2])#scale such that maximal width = n_interp
+            pred = stretch(predictions[y,x], real_width)# ...
+            pred *= heights[y,x]#Scale height
+            indent = n_interp - real_width#Indent > 0
+            vector = np.zeros(n_interp, dtype=np.float)
+            vector.fill(np.nan)
+            vector[indent:indent+real_width] = pred
+            a = ax[y,x]#[n-1-y,x]
+            a.set_xlim(0, n_interp)
+            a.plot(pred)
+            a.axis("off")
+            a.set_ylim(0,1)
+    return fig2rgb_array(fig)
 
 def plot_vae_input_output(vae, x, idxs, ax = None):
     if type(ax) == type(None):
@@ -27,7 +161,7 @@ def plot_examples_height_ratio(dataset, threshold = .1, start = 0, n = 10):
     where_is = h/w < threshold
     where_is[h < 5] = False
     where_is[np.abs(corr)<.3] = False
-    
+
     for i in range(start, start+n):
         ax[0].plot(g[where_is][i])
 
@@ -49,7 +183,7 @@ def plot_feature_in_latent_space(encoder, x, feature, ax = None):
     """
     preds = encoder.predict(x)
     x, y = preds[2].T#v of latent dim
-    
+
     if ax:
         ax.scatter(x, y, c=feature)
     else:
@@ -94,7 +228,7 @@ def plot_examples_and_boxplot_heights(vae, x_train, iso_train, height_train, idx
     ax[1].set_ylabel("df/dt [%]")
     ax[0].set_title("Typical examples")
     ax[1].set_title("Peak amplitude")
-    
+
     for i, a in enumerate(ax):
         a.text(-0.03, 1.03, string.ascii_uppercase[i], transform = a.transAxes, size= 15, weight = "bold")
 
@@ -107,26 +241,26 @@ def plot_slow_wave_dynamics(folder_curl_free_function, dataset, slow_wave_id = "
     source_sink = np.load(sources_path)
     sources = -source_sink.copy()
     sources[sources < 0] = 0
-    
+
     sinks = source_sink.copy()
     sinks[sinks < 0] = 0
     mean_sources = np.nanmean(sources, axis = (1,2))
     mean_sinks = np.nanmean(sinks, axis = (1,2))
-    
+
     mean_percentage_change = normalize_nan(dataset["sws"][slow_wave_id]["shape"])
-    
+
     if np.all(np.isnan(mean_percentage_change)):
-        print("Mean percentage change absent")        
-        
+        print("Mean percentage change absent")
+
     mean_percentage_change = mean_percentage_change[~np.isnan(mean_percentage_change)]
-        
+
     #mean_percentage_change = mean_percentage_change[~np.isnan(mean_percentage_change)]
     print(mean_percentage_change.shape)
     print(sources.shape)
-        
+
     bg = np.nanmean(sources, axis = 0)
     segments = segment_peaks(mean_sources, smoothing, shift = 0)#For both hemispheres
-    
+
     segments = [s for s in segments if s[1]-s[0] > 10]#Minimal duration for each segment
     _, max_y_left, max_x_left = split_sw_sources(sources[:,:,:sources.shape[2]//2], 0, segments = segments)
     _, max_y_right, max_x_right = split_sw_sources(sources[:,:,sources.shape[2]//2:], 0, segments = segments)
@@ -153,7 +287,7 @@ def plot_slow_wave_dynamics(folder_curl_free_function, dataset, slow_wave_id = "
 
     ax[0].imshow(np.mean(sources, axis = 0), cmap = "gray")
 
-    for i, (max_y, max_x) in enumerate([[max_y_left, max_x_left],[max_y_right, max_x_right]]):        
+    for i, (max_y, max_x) in enumerate([[max_y_left, max_x_left],[max_y_right, max_x_right]]):
         if i == 1:
             max_x = max_x + sources.shape[2]//2
         #plot_colored(max_x, max_y, ax[0], set_lims = False)
@@ -177,7 +311,7 @@ def plot_slow_wave_dynamics(folder_curl_free_function, dataset, slow_wave_id = "
     ax[2].set_title("Segmentation of slow-waves")
     ax[2].set_xlabel("time [ms]")
     ax[2].set_ylabel("normalized signal")
-    
+
     ax[1].imshow(np.hstack(seg_means))
     indent = seg_means[0].shape[1]//2
     _ = ax[1].set_xticks(np.linspace(indent,np.hstack(seg_means).shape[1]-indent, len(seg_means)).astype(int))
@@ -242,7 +376,7 @@ def plot_latent_space_and_basic_features_for_substantial_waves(manifold_img, iso
     else:
         y_min, y_max = y_range
         x_min, x_max = x_range
-    
+
     # Section A
     ax[0].tick_params(bottom=False, top=False, left = False, right=False)
     ax[0].set_title("Latent slow-wave-shape space", fontsize = 10)
@@ -309,7 +443,7 @@ def plot_latent_space_and_basic_features_for_substantial_waves(manifold_img, iso
     ax[-1].set_ylabel("z [1]", fontsize = 8)
     ax[-1].set_xlabel("z [0]", fontsize = 8)
     ax[-1].tick_params(labelbottom=False, labelleft=False)
- 
+
     # Section  (Amplitude)
     ax.append(fig.add_subplot(gs[2, 4]))
     ax[-1].set_title("Amplitude", fontsize = 10)
@@ -318,7 +452,7 @@ def plot_latent_space_and_basic_features_for_substantial_waves(manifold_img, iso
     #ax[-1].scatter(x_pred_train[height_train>4], y_pred_train[height_train>5], c = "blue", s =5)
     #ax[-1].scatter(x_pred_train[height_train>20], y_pred_train[height_train>20], c = "yellow", s =5)
 
-    # Section 
+    # Section
     ax[-1].set_xlim((x_min, x_max))
     ax[-1].set_ylim((y_min, y_max))
     ax[-1].set_xlim((x_min, x_max))
