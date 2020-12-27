@@ -1,4 +1,4 @@
-/storage/michael/main_experiment/helmholtz_per_wave_smooth/curl_free_function
-/storage/michael/main_experiment/aggregated_divergence
-/storage/michael/main_experiment/sparse_data/dataset.pkl
+/storage/silviu/main_experiment/helmholtz_per_wave_smooth/curl_free_function
+/storage/silviu/main_experiment/aggregated_divergence
+/storage/silviu/main_experiment/sparse_data/dataset.pkl
 #python aggregate_sources.py -inputs aggregate.txt --figs --per_hemisphere
