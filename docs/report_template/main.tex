@@ -67,19 +67,19 @@ headsepline, % Uncomment to get a line under the header
 %	THESIS INFORMATION
 %----------------------------------------------------------------------------------------
 
-\thesistitle{Optical Flow, Helmholtz Decomposition and Autoencoders for the characterization of slow-waves} % Your thesis title, this is used in the title and abstract, print it elsewhere with \ttitle
-\supervisor{Dr. Dominik \textsc{Jüstel}} % Your supervisor's name, this is used in the title page, print it elsewhere with \supname
-\examiner{Prof. Peter König} % Your examiner's name, this is not currently used anywhere in the template, print it elsewhere with \examname
-\degree{Master of Science} % Your degree name, this is used in the title page and abstract, print it elsewhere with \degreename
-\author{Michael \textsc{Gerstenberger}} % Your name, this is used in the title page and abstract, print it elsewhere with \authorname
+\thesistitle{Thesis Title} % Your thesis title, this is used in the title and abstract, print it elsewhere with \ttitle
+\supervisor{Dr. James \textsc{Smith}} % Your supervisor's name, this is used in the title page, print it elsewhere with \supname
+\examiner{} % Your examiner's name, this is not currently used anywhere in the template, print it elsewhere with \examname
+\degree{Doctor of Philosophy} % Your degree name, this is used in the title page and abstract, print it elsewhere with \degreename
+\author{John \textsc{Smith}} % Your name, this is used in the title page and abstract, print it elsewhere with \authorname
 \addresses{} % Your address, this is not currently used anywhere in the template, print it elsewhere with \addressname
 
-\subject{Cognitive Science} % Your subject area, this is not currently used anywhere in the template, print it elsewhere with \subjectname
+\subject{Biological Sciences} % Your subject area, this is not currently used anywhere in the template, print it elsewhere with \subjectname
 \keywords{} % Keywords for your thesis, this is not currently used anywhere in the template, print it elsewhere with \keywordnames
-\university{\href{http://www.uos.com}{Osnabrück University}} % Your university's name and URL, this is used in the title page and abstract, print it elsewhere with \univname
-\department{\href{http://ikw.uos.com}{Institute for Cognitive Science}} % Your department's name and URL, this is used in the title page and abstract, print it elsewhere with \deptname
-\group{\href{http://ikw.uos.de/research_groups/neurobiopsychology}{Neurobiopsychology Group}} % Your research group's name and URL, this is used in the title page, print it elsewhere with \groupname
-\faculty{\href{http://uos.de/en/university/schools-and-research-facilities/school-of-human-sciences/}{School of Human Sciences}} % Your faculty's name and URL, this is used in the title page and abstract, print it elsewhere with \facname
+\university{\href{http://www.university.com}{University Name}} % Your university's name and URL, this is used in the title page and abstract, print it elsewhere with \univname
+\department{\href{http://department.university.com}{Department or School Name}} % Your department's name and URL, this is used in the title page and abstract, print it elsewhere with \deptname
+\group{\href{http://researchgroup.university.com}{Research Group Name}} % Your research group's name and URL, this is used in the title page, print it elsewhere with \groupname
+\faculty{\href{http://faculty.university.com}{Faculty Name}} % Your faculty's name and URL, this is used in the title page and abstract, print it elsewhere with \facname
 
 \AtBeginDocument{
 \hypersetup{pdftitle=\ttitle} % Set the PDF's title to your title
@@ -102,27 +102,24 @@ headsepline, % Uncomment to get a line under the header
 
 \vspace*{.06\textheight}
 {\scshape\LARGE \univname\par}\vspace{1.5cm} % University name
-\textsc{\Large Master Thesis}\\[0.5cm] % Thesis type
+\textsc{\Large Doctoral Thesis}\\[0.5cm] % Thesis type
 
 \HRule \\[0.4cm] % Horizontal line
-{\fontsize{16}{18}\selectfont \bfseries \ttitle\par}\vspace{0.4cm}% Thesis title
-{\fontsize{11}{10}\selectfont  A new approach for temporospatial pattern detection in neuroimaging}% Thesis title
-\\
+{\huge \bfseries \ttitle\par}\vspace{0.4cm} % Thesis title
 \HRule \\[1.5cm] % Horizontal line
  
 \begin{minipage}[t]{0.4\textwidth}
 \begin{flushleft} \large
 \emph{Author:}\\
-{\authorname} % Author name - remove the \href bracket to remove the link
+\href{http://www.johnsmith.com}{\authorname} % Author name - remove the \href bracket to remove the link
 \end{flushleft}
 \end{minipage}
 \begin{minipage}[t]{0.4\textwidth}
 \begin{flushright} \large
-\emph{Supervisors:} \\
-Dr. Dominik Jüstel
-\\Prof. Peter König
+\emph{Supervisor:} \\
+\href{http://www.jamessmith.com}{\supname} % Supervisor name - remove the \href bracket to remove the link  
 \end{flushright}
-\end{minipage}\\[2cm]
+\end{minipage}\\[3cm]
  
 \vfill
 
@@ -132,7 +129,6 @@ Dr. Dominik Jüstel
  
 \vfill
 
-\large \textit{In cooperation with IBMI and ICI at Helmholtz Zentrum Munich}\\[0.1cm] % University requirement text
 {\large \today}\\[4cm] % Date
 %\includegraphics{Logo} % University/department logo - uncomment to place it
  
@@ -167,15 +163,22 @@ Dr. Dominik Jüstel
 \cleardoublepage
 
 %----------------------------------------------------------------------------------------
+%	QUOTATION PAGE
+%----------------------------------------------------------------------------------------
+
+\vspace*{0.2\textheight}
+
+\noindent\enquote{\itshape Thanks to my solid academic training, today I can write hundreds of words on virtually any topic without possessing a shred of information, which is how I got a good job in journalism.}\bigbreak
+
+\hfill Dave Barry
+
+%----------------------------------------------------------------------------------------
 %	ABSTRACT PAGE
 %----------------------------------------------------------------------------------------
 
 \begin{abstract}
 \addchaptertocentry{\abstractname} % Add the abstract to the table of contents
-Neural signal transduction at different levels of alertness occurs in distinct shapes \parencite[p.~137f.]{gemignani2015linking}. One may observe stimulus dependent activity during wakefulness but also spontaneous patterns of activation that dominate in stages of deep sleep (Dang-Vu et. al. 2011). Similarly, fast neuronal firing is replaced by slow, traveling waves of activation during anaesthesia. Slow-waves can be captured by high-speed fluorescence microscopy of GCamp channel activity in transgenic mice at up to 100Hz (Celotto et al. 2018).\\
-Different types of slow-waves exist which can incorporate rather localized or more widespread regions of cortex. In principle, they are thought to occur spontaneously in various regions, however it was also noted that synchrony with somatosensory states and more importantly signals in subcortical structures exists during sleep. This synchrony is related to memory formation. Recently important differences between sleep slow-waves and their counterpart during anaesthesia were identified. This shows that slow-waves represent an important yet highly variable neural phenomenom and indicates that methods are required that allow to systematically dinstinguish slow-waves based on their properites.\\
-Townsend and Gong (2018) suggest to characterize temporospatial properties of neural recordings by the detection of patterns in Dense Optical Flow. It shows, however, that the use is accompanied by two challenges: First it shows that focal brightness changes result in sources and sinks in the vector fields. Second successful estimation of Optical Flow is challenged by the quality of the contrast it is applied on. Here it is demonstrated how both challenges can be addressed and Dense Optical Flow used to characterize slow-waves. The presented procedure allows for a scale independent split of optogenetic recordings into several segments that relate to slow-waves. This allows for an event related analysis and the computation of a contrast that is independent from anatomical structures and meets the smoothness requirements of Dense Optical Flow. It is further demonstrated that Helmholtz-Decomposition can be used to distinguish between the effect of local sources of neural activation and global patterns of neural flow. Finally, it is shown how the measured high-level features can be analysed using variational autoencoders. The approach reveals a complex topology of the distribution of different features in latent slow-wave-shape space. These features include the direction of flow and the distribution of sources, phase and amplitude as well as the correlation with breathing. It is further suitable to investigate how individual waves and the combination of events differs between stages of anaesthesia.\\
-In summary a new technique to characterize slow-waves is presented that can help to improve our understanding of neural processing in the brain under anaesthesia. The use of Optical Flow, Helmholtz-Decomposition and autoencoders to characterize and distinguish different types of slow-waves appears promising. It bears potentials to study the relationship between distributions of different slow-waves and other features including anaesthetics, experimental stimuli or animal behavior.
+The Thesis Abstract is written here (and usually kept to just this page). The page is kept centered vertically so can expand into the blank space above the title too\ldots
 \end{abstract}
 
 %----------------------------------------------------------------------------------------
@@ -184,14 +187,14 @@ In summary a new technique to characterize slow-waves is presented that can help
 
 \begin{acknowledgements}
 \addchaptertocentry{\acknowledgementname} % Add the acknowledgements to the table of contents
-I would like to thank my supervisors for their support of my Master Thesis. Especially I want to thank Silviu Bodea who initiated the project, recorded all the data and made my contribution possible. Special thanks go to him and Prof. Gil Westermeyer of the Institute of Biological and Medical Imaging (IBMI) for the continuous feedback and advice regarding the results and further direction of my work. Besides I want to genuinly thank my first supervisor, Dr. Dominik Juestel for his input regarding the methodological questions and especially for pointing out the benefits of Helmholtz-Decomposition. I truly enjoyed taking part in the meetings of his group at the Institute for Computational Biology (ICI) and appreciate that I gained interesting insights in the work of the other members which gave variety to my work during the global pandemics. Finally I want to thank my second supervisor Prof. Peter König of Osnabrück University especially for his stuctured guidance regarding a cooperation with external partners during the Master Thesis.
+The acknowledgments and the people to thank go here, don't forget to include your project advisor\ldots
 \end{acknowledgements}
 
 %----------------------------------------------------------------------------------------
 %	LIST OF CONTENTS/FIGURES/TABLES PAGES
 %----------------------------------------------------------------------------------------
 
-\tableofcontents % Prints the main table of contentsz
+\tableofcontents % Prints the main table of contents
 
 \listoffigures % Prints the list of figures
 
@@ -255,10 +258,10 @@ $\omega$ & angular frequency & \si{\radian} \\
 % Uncomment the lines as you write the chapters
 
 \include{Chapters/Chapter1}
-\include{Chapters/Chapter2} 
-\include{Chapters/Chapter3}
-\include{Chapters/Chapter4} 
-\include{Chapters/Chapter5} 
+%\include{Chapters/Chapter2} 
+%\include{Chapters/Chapter3}
+%\include{Chapters/Chapter4} 
+%\include{Chapters/Chapter5} 
 
 %----------------------------------------------------------------------------------------
 %	THESIS CONTENT - APPENDICES
