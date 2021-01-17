@@ -1,11 +1,10 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.21 (MiKTeX 20.12) (preloaded format=pdflatex 2021.1.4)  17 JAN 2021 14:13
+This is pdfTeX, Version 3.14159265-2.6-1.40.21 (MiKTeX 20.12) (preloaded format=pdflatex 2021.1.4)  16 JAN 2021 01:11
 entering extended mode
-**C:/Users/eler/Desktop/projects/munich/motion_patterns_1/docs/report/main.tex
-(C:/Users/eler/Desktop/projects/munich/motion_patterns_1/docs/report/main.tex
+**./main.tex
+(main.tex
 LaTeX2e <2020-10-01> patch level 3
 L3 programming layer <2020-12-07> xparse <2020-03-03>
-(C:/Users/eler/Desktop/projects/munich/motion_patterns_1/docs/report\MastersDoc
-toralThesis.cls
+(MastersDoctoralThesis.cls
 Document Class: MastersDoctoralThesis 2017/08/27 v1.6 LaTeXTemplates.com
 ("C:\Program Files\MiKTeX 2.9\tex/latex/etoolbox\etoolbox.sty"
 Package: etoolbox 2020/10/05 v2.5k e-TeX tools for LaTeX (JAW)
@@ -614,14 +613,6 @@ File: csquotes.cfg
 )
 Package csquotes Info: Enabling multilingual quotes.
 )
-Runaway argument?
-{Cognitivame 
-! Paragraph ended before \subject  was complete.
-<to be read again> 
-                   \par 
-l.81 
-     
-? 
 ("C:\Program Files\MiKTeX 2.9\tex/latex/hyperref\hyperref.sty"
 Package: hyperref 2020-05-15 v7.00e Hypertext links for LaTeX
 
@@ -698,7 +689,7 @@ with kernel methods
 )
 Package scrhack Info: hyperref hack deactivated because of
 (scrhack)             detection of hyperref version, that doesn't
-(scrhack)             need that hack, on input line 95.
+(scrhack)             need that hack, on input line 90.
 Package hyperref Info: Driver (autodetected): hpdftex.
 
 ("C:\Program Files\MiKTeX 2.9\tex/latex/hyperref\hpdftex.def"
@@ -723,47 +714,47 @@ Package uniquecounter Info: New unique counter `rerunfilecheck' on input line 2
 )
 \Hy@SectionHShift=\skip82
 )
-Package hyperref Info: Option `bookmarksopen' set `true' on input line 95.
-Package hyperref Info: Option `hypertexnames' set `false' on input line 95.
-Package hyperref Info: Option `colorlinks' set `true' on input line 95.
-Package hyperref Info: Option `unicode' set `true' on input line 95.
+Package hyperref Info: Option `bookmarksopen' set `true' on input line 90.
+Package hyperref Info: Option `hypertexnames' set `false' on input line 90.
+Package hyperref Info: Option `colorlinks' set `true' on input line 90.
+Package hyperref Info: Option `unicode' set `true' on input line 90.
 
 ("C:\Program Files\MiKTeX 2.9\tex/latex/hyperref\puenc.def"
 File: puenc.def 2020-05-15 v7.00e Hyperref: PDF Unicode definition (HO)
 Now handling font encoding PU ...
 ... no UTF-8 mapping file for font encoding PU
 )
-Package hyperref Info: Option `breaklinks' set `true' on input line 95.
+Package hyperref Info: Option `breaklinks' set `true' on input line 90.
 Package csquotes Info: Checking for multilingual support...
 Package csquotes Info: ... found 'babel' package.
-LaTeX Font Info:    Trying to load font information for T1+ppl on input line 95
+LaTeX Font Info:    Trying to load font information for T1+ppl on input line 90
 .
 
 ("C:\Program Files\MiKTeX 2.9\tex/latex/psnfss\t1ppl.fd"
 File: t1ppl.fd 2001/06/04 font definitions for T1/ppl.
 ) (main.aux
-(Chapters/Chapter1.aux) (Chapters/Chapter2.aux) (Chapters/Chapter3.aux)
-(Chapters/Chapter4.aux) (Chapters/Chapter5.aux) (Appendices/AppendixA.aux))
+No file Chapters/Chapter1.aux.
+(Appendices/AppendixA.aux))
 \openout1 = `main.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 95.
-LaTeX Font Info:    ... okay on input line 95.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 95.
-LaTeX Font Info:    ... okay on input line 95.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 95.
-LaTeX Font Info:    ... okay on input line 95.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 95.
-LaTeX Font Info:    ... okay on input line 95.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 95.
-LaTeX Font Info:    ... okay on input line 95.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 95.
-LaTeX Font Info:    ... okay on input line 95.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 95.
-LaTeX Font Info:    ... okay on input line 95.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 95.
-LaTeX Font Info:    ... okay on input line 95.
-LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 95.
-LaTeX Font Info:    ... okay on input line 95.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 90.
+LaTeX Font Info:    ... okay on input line 90.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 90.
+LaTeX Font Info:    ... okay on input line 90.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 90.
+LaTeX Font Info:    ... okay on input line 90.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 90.
+LaTeX Font Info:    ... okay on input line 90.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 90.
+LaTeX Font Info:    ... okay on input line 90.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 90.
+LaTeX Font Info:    ... okay on input line 90.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 90.
+LaTeX Font Info:    ... okay on input line 90.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 90.
+LaTeX Font Info:    ... okay on input line 90.
+LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 90.
+LaTeX Font Info:    ... okay on input line 90.
 
 ("C:\Program Files\MiKTeX 2.9\tex/latex/siunitx\siunitx-abbreviations.cfg"
 File: siunitx-abbreviations.cfg 2017/11/26 v2.7k siunitx: Abbreviated units
@@ -801,7 +792,7 @@ Package caption Info: End \AtBeginDocument code.
 * layout: <same size as paper>
 * layoutoffset:(h,v)=(0.0pt,0.0pt)
 * bindingoffset: 14.22636pt
-* modes: includehead includefoot 
+* modes: includehead includefoot twoside 
 * h-part:(L,W,R)=(71.13188pt, 404.02908pt, 108.12054pt)
 * v-part:(T,H,B)=(42.67912pt, 759.6886pt, 42.67912pt)
 * \paperwidth=597.50787pt
@@ -809,13 +800,13 @@ Package caption Info: End \AtBeginDocument code.
 * \textwidth=404.02908pt
 * \textheight=693.49821pt
 * \oddsidemargin=13.08826pt
-* \evensidemargin=-1.1381pt
+* \evensidemargin=35.85056pt
 * \topmargin=-29.59087pt
 * \headheight=18.85364pt
 * \headsep=19.8738pt
 * \topskip=11.0pt
 * \footskip=27.46295pt
-* \marginparwidth=62.0pt
+* \marginparwidth=116.0pt
 * \marginparsep=7.0pt
 * \columnsep=10.0pt
 * \skip\footins=10.0pt plus 4.0pt minus 2.0pt
@@ -823,20 +814,20 @@ Package caption Info: End \AtBeginDocument code.
 * \voffset=0.0pt
 * \mag=1000
 * \@twocolumnfalse
-* \@twosidefalse
-* \@mparswitchfalse
+* \@twosidetrue
+* \@mparswitchtrue
 * \@reversemarginfalse
 * (1in=72.27pt=25.4mm, 1cm=28.453pt)
 
 Package scrlayer Info: Setting magic \footheight to \baselineskip while
-(scrlayer)             \begin{document} on input line 95.
-Package scrbase Info: activating english \abbrevname on input line 95.
-Package scrbase Info: activating english \byname on input line 95.
-Package scrbase Info: activating english \acknowledgementname on input line 95.
+(scrlayer)             \begin{document} on input line 90.
+Package scrbase Info: activating english \abbrevname on input line 90.
+Package scrbase Info: activating english \byname on input line 90.
+Package scrbase Info: activating english \acknowledgementname on input line 90.
 
-Package scrbase Info: activating english \authorshipname on input line 95.
-Package scrbase Info: activating english \constantsname on input line 95.
-Package scrbase Info: activating english \symbolsname on input line 95.
+Package scrbase Info: activating english \authorshipname on input line 90.
+Package scrbase Info: activating english \constantsname on input line 90.
+Package scrbase Info: activating english \symbolsname on input line 90.
 \big@size=\dimen192
 Package biblatex Info: Trying to load language 'english'...
 Package biblatex Info: ... file 'english.lbx' found.
@@ -861,12 +852,13 @@ Package: blx-case-expl3 2020/12/31 v3.16 expl3 case changing code for biblatex
 \openout3 = `main-blx.bib'.
 
 Package biblatex Info: Trying to load bibliographic data...
-Package biblatex Info: ... file 'main.bbl' found.
- (main.bbl)
-Package biblatex Info: Reference section=0 on input line 95.
-Package biblatex Info: Reference segment=0 on input line 95.
-Package hyperref Info: Link coloring ON on input line 95.
- ("C:\Program Files\MiKTeX 2.9\tex/latex/hyperref\nameref.sty"
+Package biblatex Info: ... file 'main.bbl' not found.
+
+No file main.bbl.
+Package biblatex Info: Reference section=0 on input line 90.
+Package biblatex Info: Reference segment=0 on input line 90.
+Package hyperref Info: Link coloring ON on input line 90.
+("C:\Program Files\MiKTeX 2.9\tex/latex/hyperref\nameref.sty"
 Package: nameref 2019/09/16 v2.46 Cross-referencing by name of section
 
 ("C:\Program Files\MiKTeX 2.9\tex/latex/refcount\refcount.sty"
@@ -877,38 +869,38 @@ Package: gettitlestring 2019/12/15 v1.6 Cleanup title references (HO)
 )
 \c@section@level=\count434
 )
-LaTeX Info: Redefining \ref on input line 95.
-LaTeX Info: Redefining \pageref on input line 95.
-LaTeX Info: Redefining \nameref on input line 95.
+LaTeX Info: Redefining \ref on input line 90.
+LaTeX Info: Redefining \pageref on input line 90.
+LaTeX Info: Redefining \nameref on input line 90.
 
 (main.out) (main.out)
 \@outlinefile=\write4
 \openout4 = `main.out'.
 
 LaTeX Font Info:    Trying to load font information for OT1+ppl on input line 9
-5.
+0.
  ("C:\Program Files\MiKTeX 2.9\tex/latex/psnfss\ot1ppl.fd"
 File: ot1ppl.fd 2001/06/04 font definitions for OT1/ppl.
 )
 LaTeX Font Info:    Trying to load font information for OML+zplm on input line 
-95.
+90.
  ("C:\Program Files\MiKTeX 2.9\tex/latex/psnfss\omlzplm.fd"
 File: omlzplm.fd 2002/09/08 Fontinst v1.914 font definitions for OML/zplm.
 )
 LaTeX Font Info:    Trying to load font information for OMS+zplm on input line 
-95.
+90.
 
 ("C:\Program Files\MiKTeX 2.9\tex/latex/psnfss\omszplm.fd"
 File: omszplm.fd 2002/09/08 Fontinst v1.914 font definitions for OMS/zplm.
 )
 LaTeX Font Info:    Trying to load font information for OMX+zplm on input line 
-95.
+90.
 
 ("C:\Program Files\MiKTeX 2.9\tex/latex/psnfss\omxzplm.fd"
 File: omxzplm.fd 2002/09/08 Fontinst v1.914 font definitions for OMX/zplm.
 )
 LaTeX Font Info:    Trying to load font information for OT1+zplm on input line 
-95.
+90.
 
 ("C:\Program Files\MiKTeX 2.9\tex/latex/psnfss\ot1zplm.fd"
 File: ot1zplm.fd 2002/09/08 Fontinst v1.914 font definitions for OT1/zplm.
@@ -918,67 +910,101 @@ File: ot1zplm.fd 2002/09/08 Fontinst v1.914 font definitions for OT1/zplm.
 
 
 
-{C:/Users/eler/AppData/Local/MiKTeX/2.9/pdftex/config/pdftex.map}]
+{C:/Users/eler/AppData/Local/MiKTeX/2.9/pdftex/config/pdftex.map}] [2
+
+]
 --------------------
  Declaration of Authorship
 --------------------
 LaTeX Font Info:    Trying to load font information for TS1+ppl on input line 1
-57.
+52.
 ("C:\Program Files\MiKTeX 2.9\tex/latex/psnfss\ts1ppl.fd"
 File: ts1ppl.fd 2001/06/04 font definitions for TS1/ppl.
 )
-Underfull \hbox (badness 10000) in paragraph at lines 162--163
+Underfull \hbox (badness 10000) in paragraph at lines 157--158
 
  []
 
 1: section
-[1
+[3] [4
 
 ]
 --------------------
  Abstract
 --------------------
-1: section
-[2
 
+LaTeX Warning: Citation 'gemignani2015linking' on page 5 undefined on input lin
+e 176.
+
+
+Overfull \hbox (8.49661pt too wide) in paragraph at lines 176--180
+\T1/ppl/m/n/10.95 ([]). One may ob-serve stim-u-lus de-pen-dent ac-tiv-ity dur-
+ing wake-
+ []
+
+1: section
+[5
+
+] [6
 
 ]
 --------------------
  Acknowledgements
 --------------------
 1: section
-[3
+[7] [8
 
-] (main.toc
-1: section
-[4
-
-])
+] (main.toc)
 \tf@toc=\write5
 \openout5 = `main.toc'.
 
- [5] (main.lof)
+
+1: section
+[9] [10
+
+] (main.lof)
 \tf@lof=\write6
 \openout6 = `main.lof'.
 
 
 1: section
-[6
+[11] [12
+
+] (main.lot)
+\tf@lot=\write7
+\openout7 = `main.lot'.
+
+
+1: section
+[13] [14
 
 ]
 1: section
-[7
+[15] [16
+
+]
+1: section
+[17] [18
+
+]
+1: section
+[19] [20
+
+]
+--------------------
+ Dedicatory
+--------------------
+1: section
+[21] [22
 
 ]
 1: section
 \openout2 = `Chapters/Chapter1.aux'.
 
-
-(C:/Users/eler/Desktop/projects/munich/motion_patterns_1/docs/report\Chapters/C
-hapter1.tex
+(Chapters/Chapter1.tex
 Chapter 1.
 )
-Underfull \hbox (badness 10000) in paragraph at lines 14--232
+Underfull \hbox (badness 10000) in paragraph at lines 14--262
 
  []
 
@@ -986,107 +1012,269 @@ Underfull \hbox (badness 10000) in paragraph at lines 14--232
 [1
 
 
-
 ] [2] [3]
 \openout2 = `Chapters/Chapter2.aux'.
 
-
-(C:/Users/eler/Desktop/projects/munich/motion_patterns_1/docs/report\Chapters/C
-hapter2.tex
-Chapter 2.
-
-Overfull \hbox (2.3105pt too wide) in paragraph at lines 16--22
-\T1/ppl/m/n/12 On one side these low fre-quency neo-cor-ti-cal slow waves and E
-EG delta waves
- []
-
-
-Overfull \hbox (23.1796pt too wide) in paragraph at lines 16--22
-\T1/ppl/m/n/12 isoflourane have been stud-ied ex-ten-sively ([]Qaz-zaz and Win-
-low, [][]2017[][]; []Moghadam
- []
-
-1: section
-[4
-
-
-
-
-] [5] [6] [7]
-
-LaTeX Warning: Reference `effects_of_anaesthesia ' on page 8 undefined on input
- line 42.
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 42--43
-
- []
-
-[8] [9] [10]
-Underfull \hbox (badness 10000) in paragraph at lines 60--65
-
- []
-
-[11]
-<Figures/oscillatory_centres_and_the_ascending_reticular_activation_system.png,
- id=318, 1562.08594pt x 834.86906pt>
-File: Figures/oscillatory_centres_and_the_ascending_reticular_activation_system
-.png Graphic file (type png)
-<use Figures/oscillatory_centres_and_the_ascending_reticular_activation_system.
-png>
-Package pdftex.def Info: Figures/oscillatory_centres_and_the_ascending_reticula
-r_activation_system.png  used on input line 68.
-(pdftex.def)             Requested size: 404.01141pt x 215.92706pt.
-
-
-LaTeX Font Warning: Font shape `T1/ppl/m/scit' undefined
-(Font)              using `T1/ppl/m/sc' instead on input line 72.
-
-
-LaTeX Font Warning: Font shape `T1/ppl/m/scit' undefined
-(Font)              using `T1/ppl/m/sc' instead on input line 72.
-
-
-LaTeX Font Warning: Font shape `T1/ppl/m/scit' undefined
-(Font)              using `T1/ppl/m/sc' instead on input line 72.
-
-
-LaTeX Font Warning: Font shape `T1/ppl/m/scit' undefined
-(Font)              using `T1/ppl/m/sc' instead on input line 72.
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 76--78
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 83--86
-
- []
-
-[12]) [13] [14] [15 <C:/Users/eler/Desktop/projects/munich/motion_patterns_1/do
-cs/report/Figures/oscillatory_centres_and_the_ascending_reticular_activation_sy
-stem.png>]
-\openout2 = `Chapters/Chapter3.aux'.
-
-
-(C:/Users/eler/Desktop/projects/munich/motion_patterns_1/docs/report\Chapters/C
-hapter3.tex
-Chapter 3.
-)
-1: section
-[16
+ (Chapters/Chapter2.tex [4
 
 
 
 
 ]
-\openout2 = `Chapters/Chapter4.aux'.
+Chapter 2.
+
+LaTeX Warning: Citation 'brown2012control' on page 5 undefined on input line 12
+.
 
 
-(C:/Users/eler/Desktop/projects/munich/motion_patterns_1/docs/report\Chapters/C
-hapter4.tex
-Chapter 4.
+LaTeX Warning: Reference `working_definition' on page 5 undefined on input line
+ 12.
+
+
+LaTeX Warning: Citation 'niethard2018cortical' on page 5 undefined on input lin
+e 12.
+
+
+LaTeX Warning: Citation 'celotto2020analysis' on page 5 undefined on input line
+ 12.
+
+
+LaTeX Warning: Citation 'brown2012control' on page 5 undefined on input line 13
+.
+
+
+LaTeX Warning: Citation 'niethard2018cortical' on page 5 undefined on input lin
+e 13.
+
+
+LaTeX Warning: Citation 'brown2012control' on page 5 undefined on input line 13
+.
+
+
+LaTeX Warning: Citation 'brown2012control' on page 5 undefined on input line 13
+.
+
+
+LaTeX Warning: Citation 'qazzaz2017modulation' on page 5 undefined on input lin
+e 14.
+
+
+LaTeX Warning: Citation 'moghadam2019comparative' on page 5 undefined on input 
+line 14.
+
+
+LaTeX Warning: Citation 'eger1981isoflurane' on page 5 undefined on input line 
+14.
+
+
+LaTeX Warning: Citation 'jenkins1999effects' on page 5 undefined on input line 
+14.
+
+
+LaTeX Warning: Citation 'nghiem2018two' on page 5 undefined on input line 14.
+
+
+LaTeX Warning: Reference `effects_of_anaesthesia' on page 5 undefined on input 
+line 14.
+
+
+LaTeX Warning: Citation 'brown2012control' on page 5 undefined on input line 15
+.
+
+
+LaTeX Warning: Citation 'montagna2005fatal' on page 5 undefined on input line 1
+5.
+
+
+LaTeX Warning: Citation 'brown2012control' on page 5 undefined on input line 15
+.
+
+
+LaTeX Warning: Citation 'niethard2018cortical' on page 5 undefined on input lin
+e 15.
+
+
+LaTeX Warning: Reference `slow_waves_anaesthesia_sleep' on page 5 undefined on 
+input line 15.
+
+
+LaTeX Warning: Citation 'buzsaki1996hippocampo' on page 5 undefined on input li
+ne 16.
+
+
+LaTeX Warning: Reference `slow_waves_and_memory' on page 5 undefined on input l
+ine 16.
+
+
+LaTeX Warning: Citation 'brown2012control' on page 5 undefined on input line 17
+.
+
+
+LaTeX Warning: Citation 'bernardi2018local' on page 5 undefined on input line 1
+7.
+
+
+LaTeX Warning: Reference `working_definition' on page 5 undefined on input line
+ 17.
+
+
+Overfull \hbox (40.53056pt too wide) in paragraph at lines 12--18
+\T1/ppl/m/n/12 mus in-di-cat-ing that this kind of slow waves is of tha-la-mic 
+ori-gin ([]).
+ []
+
+
+Overfull \hbox (2.3105pt too wide) in paragraph at lines 12--18
+\T1/ppl/m/n/12 On one side these low fre-quency neo-cor-ti-cal slow waves and E
+EG delta waves
+ []
+
+
+Overfull \hbox (0.54637pt too wide) in paragraph at lines 12--18
+\T1/ppl/m/n/12 hand si-mul-ta-ne-ous imag-ing and elec-tro-phys-i-o-log-i-cal r
+ecord-ings in-di-cate that
+ []
+
+
+Overfull \hbox (108.19868pt too wide) in paragraph at lines 12--18
+\T1/ppl/m/n/12 isoflourane have been stud-ied ex-ten-sively ([]; [];
+ []
+
+
+Overfull \hbox (13.47063pt too wide) in paragraph at lines 12--18
+\T1/ppl/m/n/12 act as the pre-ferred lo-ca-tion of early above av-er-age ac-tiv
+-ity ([]).
+ []
+
+1: section
+[5] [6] [7] [8]
+
+LaTeX Warning: Citation 'nghiem2018two' on page 9 undefined on input line 38.
+
+
+LaTeX Warning: Citation 'jercog2017up' on page 9 undefined on input line 38.
+
+
+LaTeX Warning: Citation 'jercog2017up' on page 9 undefined on input line 38.
+
+
+LaTeX Warning: Reference `effects_of_anaesthesia ' on page 9 undefined on input
+ line 38.
+
+
+LaTeX Warning: Citation 'nghiem2018two' on page 9 undefined on input line 38.
+
+
+LaTeX Warning: Citation 'nghiem2018two' on page 9 undefined on input line 38.
+
+
+Overfull \hbox (5.08331pt too wide) in paragraph at lines 38--39
+\T1/ppl/m/n/12 anaes-the-sia dif-fer sub-stan-tially ([]). Jercog et al. ([])
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 38--39
+
+ []
+
+[9]
+
+LaTeX Warning: Citation 'akert1965anatomical' on page 10 undefined on input lin
+e 45.
+
+
+LaTeX Warning: Citation 'montagna2005fatal' on page 10 undefined on input line 
+46.
+
+
+LaTeX Warning: Citation 'aulinas2019physiology' on page 10 undefined on input l
+ine 46.
+
+
+LaTeX Warning: Citation 'choi2014melatonin' on page 10 undefined on input line 
+46.
+
+
+LaTeX Warning: Citation 'aulinas2019physiology' on page 10 undefined on input l
+ine 47.
+
+
+LaTeX Warning: Citation 'koella1984organization' on page 10 undefined on input 
+line 47.
+
+
+LaTeX Warning: Citation 'de2011melatonergic' on page 10 undefined on input line
+ 47.
+
+
+LaTeX Warning: Citation 'montagna2005fatal' on page 10 undefined on input line 
+49.
+
+[10] [11]
+
+LaTeX Warning: Reference `effects_of_anaesthesia' on page 12 undefined on input
+ line 60.
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 56--61
+
+ []
+
+[12]
+<Figures/oscillatory_centres_and_the_ascending_reticular_activation_system.png,
+ id=204, 1562.08594pt x 834.86906pt>
+File: Figures/oscillatory_centres_and_the_ascending_reticular_activation_system
+.png Graphic file (type png)
+<use Figures/oscillatory_centres_and_the_ascending_reticular_activation_system.
+png>
+Package pdftex.def Info: Figures/oscillatory_centres_and_the_ascending_reticula
+r_activation_system.png  used on input line 64.
+(pdftex.def)             Requested size: 404.01141pt x 215.92706pt.
+
+
+LaTeX Warning: Citation 'brown2012control' on page 13 undefined on input line 6
+7.
+
+
+LaTeX Warning: Citation 'brown2012control' on page 13 undefined on input line 6
+7.
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 71--73
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 78--81
+
+ []
+
+[13]
+
+LaTeX Warning: Citation 'berger1929' on page 14 undefined on input line 109.
+
+
+LaTeX Warning: Citation 'furrer2019sleep' on page 14 undefined on input line 10
+9.
+
+)
+Overfull \hbox (20.3102pt too wide) in paragraph at lines 109--263
+\T1/ppl/m/n/12 the pi-o-neer-ing elec-troen-cephalo-graphic study al-most a cen
+-tury ago ([]).
+ []
+
+
+Overfull \hbox (0.97824pt too wide) in paragraph at lines 109--263
+\T1/ppl/m/n/12 term slow-wave is typ-i-cally also used to de-scribe os-cil-la-t
+ory pat-terns in EEGs.
+ []
+
+[14] [15] [16 <./Figures/oscillatory_centres_and_the_ascending_reticular_activa
+tion_system.png>]
+\openout2 = `Chapters/Chapter3.aux'.
+
+ (Chapters/Chapter3.tex
+Chapter 3.
 )
 1: section
 [17
@@ -1094,26 +1282,34 @@ Chapter 4.
 
 
 
-] [18]
+]
+\openout2 = `Chapters/Chapter4.aux'.
+
+ (Chapters/Chapter4.tex [18
+
+
+
+
+]
+Chapter 4.
+)
+1: section
+[19] [20]
 \openout2 = `Chapters/Chapter5.aux'.
 
-
-(C:/Users/eler/Desktop/projects/munich/motion_patterns_1/docs/report\Chapters/C
-hapter5.tex
+ (Chapters/Chapter5.tex
 Chapter 5.
 )
 1: section
-[19
+[21
 
 
 
 
-] [20]
+] [22]
 \openout2 = `Appendices/AppendixA.aux'.
 
-
-(C:/Users/eler/Desktop/projects/munich/motion_patterns_1/docs/report\Appendices
-/AppendixA.tex
+ (Appendices/AppendixA.tex
 Appendix A.
 LaTeX Font Info:    Trying to load font information for T1+cmtt on input line 1
 1.
@@ -1121,51 +1317,58 @@ LaTeX Font Info:    Trying to load font information for T1+cmtt on input line 1
 File: t1cmtt.fd 2019/12/16 v2.5j Standard LaTeX font definitions
 ))
 1: section
-[21
+[23
 
 
 
 
 ]
-Overfull \hbox (4.36037pt too wide) in paragraph at lines 255--255
-\T1/ppl/m/n/10.95 med-i-cated chil-dren and ado-les-cents with attention-defici
-t/hyperactivity dis-or-der.
- []
 
-1: section
-[22
+LaTeX Warning: Empty bibliography on input line 285.
 
-
-
-] [23] (main.aux (Chapters/Chapter1.aux) (Chapters/Chapter2.aux)
-(Chapters/Chapter3.aux) (Chapters/Chapter4.aux) (Chapters/Chapter5.aux)
-(Appendices/AppendixA.aux))
+(main.aux
+(C:\Users\eler\Desktop\projects\munich\motion_patterns_1\docs\report\build\Chap
+ters/Chapter1.aux) (Appendices/AppendixA.aux))
 
 LaTeX Warning: There were undefined references.
 
+
+LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
+
 Package rerunfilecheck Info: File `main.out' has not changed.
-(rerunfilecheck)             Checksum: AE092DE1B9EA0C2314A911B5668735A1;5299.
+(rerunfilecheck)             Checksum: 8E7F32DA1FF5278CAF57AA69E0BDEC3E;384.
+
+Package biblatex Warning: Please (re)run BibTeX on the file(s):
+(biblatex)                main
+(biblatex)                and rerun LaTeX afterwards.
+
 Package logreq Info: Writing requests to 'main.run.xml'.
 \openout1 = `main.run.xml'.
 
  ) 
 Here is how much of TeX's memory you used:
- 26852 strings out of 479624
- 555459 string characters out of 2873127
- 1071864 words of memory out of 3000000
- 43531 multiletter control sequences out of 15000+200000
- 462889 words of font info for 131 fonts, out of 3000000 for 9000
+ 26675 strings out of 479624
+ 549727 string characters out of 2873127
+ 1058326 words of memory out of 3000000
+ 43365 multiletter control sequences out of 15000+200000
+ 473038 words of font info for 147 fonts, out of 3000000 for 9000
  1141 hyphenation exceptions out of 8191
- 94i,21n,94p,1886b,2448s stack positions out of 5000i,500n,10000p,200000b,50000s
- <C:\Users\eler\AppData\Local\MiKTeX\2.9\fonts/pk/ljfour/jknappen/ec/dpi600\e
-ctt1000.pk>{C:/Program Files/MiKTeX 2.9/fonts/enc/dvips/base/8r.enc}<C:/Program
- Files/MiKTeX 2.9/fonts/type1/urw/palatino/uplb8a.pfb><C:/Program Files/MiKTeX 
-2.9/fonts/type1/urw/palatino/uplr8a.pfb><C:/Program Files/MiKTeX 2.9/fonts/type
-1/urw/palatino/uplr8a.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/urw/palatino
-/uplri8a.pfb>
-Output written on main.pdf (31 pages, 603232 bytes).
+ 94i,21n,94p,1820b,1728s stack positions out of 5000i,500n,10000p,200000b,50000s
+pdfTeX warning (dest): name{appendix.15} has been referenced but does not exi
+st, replaced by a fixed one
+
+ <C:\Users\eler\AppData\Local\MiKTeX\2.9\fonts/pk/ljfour/jknappen/ec/dpi600\ect
+t1000.pk>{C:/Program Files/MiKTeX 2.9/fonts/enc/dvips/base/8r.enc}<C:/Program F
+iles/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr10.pfb><C:/Program Files/MiKT
+eX 2.9/fonts/type1/public/amsfonts/cm/cmsy10.pfb><C:/Program Files/MiKTeX 2.9/f
+onts/type1/public/mathpazo/fplmri.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/
+urw/palatino/uplb8a.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/urw/palatino/u
+plr8a.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/urw/palatino/uplr8a.pfb><C:/
+Program Files/MiKTeX 2.9/fonts/type1/urw/palatino/uplri8a.pfb>
+Output written on C:\Users\eler\Desktop\projects\munich\motion_patterns_1\docs\
+report\build\main.pdf (45 pages, 596801 bytes).
 PDF statistics:
- 441 PDF objects out of 1000 (max. 8388607)
- 90 named destinations out of 1000 (max. 500000)
- 246 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 348 PDF objects out of 1000 (max. 8388607)
+ 89 named destinations out of 1000 (max. 500000)
+ 54 words of extra memory for PDF output out of 10000 (max. 10000000)
 
