@@ -181,8 +181,8 @@ Dr. Dominik Jüstel
 \addchaptertocentry{\abstractname} % Add the abstract to the table of contents
 
 Neural signal transduction at different levels of alertness occurs in distinct shapes \parencite{eger1981isoflurane}. One may observe stimulus dependent activity during wakefulness but also spontaneous patterns of activation that dominate in stages of deep sleep \parencite{brown2012control}. Similarly, fast neuronal firing is replaced by slow, traveling waves of activation during anaesthesia \parencite{steriade1993novel,celotto2020analysis}. Cortical slow waves can be captured by fluorescence microscopy of GCamp channel activity in transgenic mice at up to 100Hz.\\
-Different types of slow waves exist which can incorporate rather localized or more widespread regions of cortex \cite{bernardi2018local}. Neocortical slow waves are distinguished from delta waves \parencite{steriade1993novel}. In principle, they are thought to occur spontaneously in various regions, however it was also noted that synchrony with somatosensory states and more importantly signals in subcortical structures exists \parencite{stroh2013making}. Neocortico-hippocampal synchrony is related to memory formation \parencite{maingret2016hippocampo}. Recently important differences between cortical sleep slow waves and their counterpart during anaesthesia were identified \parencite{nghiem2018two}. This shows that slow waves represent an important yet highly variable neural phenomenon and indicates that methods are required that allow to systematically distinguish slow waves based on their properties.\\
-Townsend and Gong \parencite{townsend2018detection} suggest to characterize temporospatial properties of neural recordings by the detection of patterns in Dense Optical Flow. It shows, however, that the use is accompanied by two challenges: First it shows that focal brightness changes result in sources and sinks in the vector fields. Second successful estimation of Optical Flow is challenged by the quality of the contrast it is applied on. Here it is demonstrated how both can be addressed and Dense Optical Flow used successfully to characterize slow waves. The presented procedure allows for a scale independent split of optogenetic recordings into several segments that include neocortical slow waves. This allows for an event related analysis and the computation of a contrast that is independent from anatomical structures and meets the smoothness requirements of Dense Optical Flow. It is further demonstrated that Helmholtz-Decomposition can be used to distinguish between the effect of local sources of neural activation and global patterns of neural flow. Finally, it is shown how the measured high-level features can be analysed using variational autoencoders. The approach reveals a complex topology of the distribution of different features in latent slow-wave-space. These features include the direction of flow and the distribution of sources, phase and amplitude. It shows that the combination of different types of events differs between stages of anaesthesia.\\
+Different types of slow waves exist which can incorporate rather localized or more widespread regions of cortex \parencite{bernardi2018local}. Neocortical slow waves are distinguished from delta waves \parencite{steriade1993novel}. In principle, they are thought to occur spontaneously in various regions, however it was also noted that synchrony with somatosensory states and more importantly signals in subcortical structures exists \parencite{stroh2013making}. Neocortico-hippocampal synchrony is related to memory formation \parencite{maingret2016hippocampo}. Recently important differences between cortical sleep slow waves and their counterpart during anaesthesia were identified \parencite{nghiem2018two}. This shows that slow waves represent an important yet highly variable neural phenomenon and indicates that methods are required that allow to systematically distinguish slow waves based on their properties.\\
+Townsend and Gong \parencite{townsend2018detection} suggest to characterize temporospatial properties of neural recordings by the detection of patterns in Dense Optical Flow. It shows, however, that the use is accompanied by two challenges: First it shows that focal brightness changes result in sources and sinks in the vector fields. Second successful estimation of Optical Flow is challenged by the quality of the contrast it is applied on. Here it is demonstrated how both can be addressed and Dense Optical Flow used successfully to characterize slow waves. The presented procedure allows for a scale independent split of optogenetic recordings into several segments that include neocortical slow waves. This allows for an event related analysis and the computation of a contrast that is independent from anatomical structures and meets the smoothness requirements of Dense Optical Flow. It is further demonstrated that Helmholtz-Decomposition can be used to distinguish between the effect of local sources of neural activation and global patterns of neural flow. Finally, it is shown how the measured high-level features can be analysed using variational autoencoders. The approach reveals a complex topology of the distribution of different features in latent slow-wave-space. These features include the direction of flow and the distribution of sources, duration and amplitude. It shows that the combination of different types of events differs between stages of anaesthesia.\\
 In summary a new technique to characterize slow-waves is presented that can help to improve our understanding of neural processing in the brain under anaesthesia. The use of Optical Flow, Helmholtz-Decomposition and autoencoders to characterize and distinguish different types of slow waves appears promising. It bears potentials to study the relationship between distributions of events and other features including anaesthetics, experimental stimuli or animal behavior.
 \end{abstract}
 \onehalfspacing % Reset line spacing to 1.5 from here on
@@ -212,8 +212,42 @@ I would like to thank my supervisors for their support of my Master Thesis. Espe
 
 \begin{abbreviations}{ll} % Include a list of abbreviations (a table of two columns)
 
-\textbf{LAH} & \textbf{L}ist \textbf{A}bbreviations \textbf{H}ere\\
-\textbf{WSF} & \textbf{W}hat (it) \textbf{S}tands \textbf{F}or\\
+\textbf{EEG} & \ Electroencephalogram\\
+\textbf{ECoG} & \ Electrocorticogram\\
+\textbf{fMRI} & \ Functional Magnetic Resonance Imaging\\
+\textbf{MRI} & \ Magnetic Resonance Imaging\\
+\textbf{CT} & \ Computed tomography (X-ray)\\
+\textbf{GCaMP} & \ A genetically modulated calcium channel with green flouroscence\\
+\textbf{K+} & \ Potassium ions\\
+\textbf{Ca2+} & \ Calcium ions\\
+\textbf{NMDA} & \ N-Methyl-D-Aspartic-Acid\\
+\textbf{GABA} & \ Gamma-Aminobutyric-Acid\\
+\textbf{iso} & \ Isoflurane\\
+\textbf{ARAS} & \ Ascending reticular activation system\\
+\textbf{RMT} & \ Rostral midline thalamic nucleus\\
+\textbf{LP} & \ Lateral posterios nucleus of thalamus\\
+\textbf{MnPO} & \ Medial nucleus of the preoptic area\\
+\textbf{RTN} & \ Reticular thalamic nucleus\\
+\textbf{SCN} & \ Suprachismatic nucleus\\
+\textbf{VLPO} & \ Ventrolateral nucleus of the preoptic area\\
+\textbf{MnPO} & \ Medial nucleus of the preoptic area\\
+\textbf{REM} & \ Rapid eye movement \\
+\textbf{RBF} & \ Radial basis function\\
+\textbf{CNN} & \ Convolutional neural network\\
+\textbf{VAE} & \ Variational Autoencoder\\
+\textbf{UNet} & \ Autoencoder with U-shape\\
+\textbf{MLP} & \ Multilayer perceptron where all layers are fully connected.\\
+\textbf{RELU} & \ Rectified linear units\\
+
+
+
+
+
+
+
+
+
+
 
 \end{abbreviations}
 
@@ -246,7 +280,7 @@ I would like to thank my supervisors for their support of my Master Thesis. Espe
 % Include the appendices of the thesis as separate files from the Appendices folder
 % Uncomment the lines as you write the Appendices
 
-\include{Appendices/AppendixA}
+%\include{Appendices/AppendixA}
 %\include{Appendices/AppendixB}
 %\include{Appendices/AppendixC}
 
